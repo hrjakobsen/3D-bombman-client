@@ -193,8 +193,8 @@ int main(int argc, char* argv[])
 
 		tcp::resolver resolver(io_service);
 		auto endpoint_iterator = resolver.resolve({ IP, PORT });
-		chat_client c(io_service, endpoint_iterator);
-
+		chat_client d(io_service, endpoint_iterator);
+		c = d;
 		std::thread t([&io_service](){ io_service.run(); });
 
 		/*char line[chat_message::max_body_length + 1];
