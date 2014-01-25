@@ -8,6 +8,17 @@ void Gametimer() {
 		LastGameTick = clock();
 		display();
 		FramesCount++;
+
+
+		chat_message msg;
+		msg.body_length(std::strlen("HEJ"));
+		std::memcpy(msg.body(), "HEJ", msg.body_length());
+		msg.encode_header();
+
+
+		std::cout << now_str() << "\n";
+		c.write(msg);
+
 	}
 	else {
 		std::this_thread::sleep_for(std::chrono::milliseconds(1 / (long long)20 - (long long)Diff));
