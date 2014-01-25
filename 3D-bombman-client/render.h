@@ -33,10 +33,13 @@ void GenerateWorld(){
 	glTranslatef(WorldSize / 2, -(WorldSize / 2), WorldSize / 2);
 	glutSolidCube(WorldSize);
 	glTranslatef(-(WorldSize / 2), WorldSize / 2, -(WorldSize / 2));
-	glTranslatef(0, 1, (WorldSize*-1));
-	for (int i = 0; i < WorldSize; i++) {
-		for (int j = 0; j < WorldSize; j++) {
-			//glutWireCube(1);
+	glTranslatef(0, 1, 0);
+
+	for (int x = 0; x < WorldSize; x++) {
+		for (int z = 0; z < WorldSize; z++) {
+			if (!(World[z][x] == BLOCK_AIR)) {
+				glutWireCube(1);
+			}
 			glTranslatef(1, 0, 0);
 		}
 		glTranslatef(WorldSize*-1, 0, 0);
