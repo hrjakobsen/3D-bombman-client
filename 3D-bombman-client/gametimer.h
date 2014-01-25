@@ -10,9 +10,10 @@ void Gametimer() {
 		FramesCount++;
 
 
-		
+
 
 	}
 	else {
 		std::this_thread::sleep_for(std::chrono::milliseconds(1 / (long long)20 - (long long)Diff));
 	}
+}
