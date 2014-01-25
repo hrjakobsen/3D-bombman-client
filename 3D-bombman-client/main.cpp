@@ -15,7 +15,6 @@
 #include "chat_message.hpp"
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include "gametimer.h"
-#include "texture.h"
 
 using boost::asio::ip::tcp;
 
@@ -273,7 +272,7 @@ int main(int argc, char* argv[])
 		glutKeyboardFunc(KeyBoardCallBackDown);
 		glutKeyboardUpFunc(KeyBoardCallBackUp);
 
-		texture *Tex = texture::loadBMP("hello.bmp");
+		//texture *Tex = texture::loadBMP("hello.bmp");
 
 		glutMainLoop();
 		/*****************************************************************************************************************

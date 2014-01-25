@@ -1,7 +1,8 @@
 #include <GL\glut.h>
+#include <iostream>
 #include <Windows.h>
 #include "vectors.h"
-#include "texture.h"
+
 #include "math.h"
 #include <math.h>
 #include <cstdlib>
