@@ -215,15 +215,26 @@ int main(int argc, char* argv[])
 		/*****************************************************************************************************************
 		*********************************************************GLUT*****************************************************
 		*****************************************************************************************************************/
+		
+		// init GLUT and create window
 		glutInit(&argc, argv);
 		glutInitWindowPosition(0, 0);
 		glutInitWindowSize(1360, 700);
 		glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
-		glutCreateWindow("Life in a Box");
+		glutCreateWindow("3D bombman");
 		glutSetCursor(GLUT_CURSOR_NONE);
 		glEnable(GL_DEPTH_TEST);
 		glutFullScreen();
 
+		//Register callbacks
+		glutDisplayFunc(display);
+		glutReshapeFunc(reshape);
+		glutIdleFunc(Gametimer);
+
+		glutMainLoop();
+		/*****************************************************************************************************************
+		*************************************************GLUT FINISHED****************************************************
+		*****************************************************************************************************************/
 		c.close();
 		t.join();
 	}
