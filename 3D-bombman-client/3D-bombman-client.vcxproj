@@ -93,8 +93,8 @@
     <ClInclude Include="vectors.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\..\Desktop\crate.png" />
-    <Image Include="..\..\..\..\..\Desktop\stone.png" />
+    <Image Include="crate.png" />
+    <Image Include="stone.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
