@@ -1,10 +1,6 @@
-#include "variables.h"
-#ifndef TEXTURE_H
-#define TEXTURE_H
-
-// add the content of the header file here
-
-
+#include <iostream>
+#ifndef __3D_bombman_client_texture__
+#define __3D_bombman_client_texture__
 
 #pragma once
 
@@ -17,4 +13,4 @@ public:
 	~texture();
 };
 
-#endif 
+#endif /* defined(__3D-bombman-client_texture) */__

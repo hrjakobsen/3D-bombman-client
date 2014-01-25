@@ -273,7 +273,7 @@ int main(int argc, char* argv[])
 		glutKeyboardFunc(KeyBoardCallBackDown);
 		glutKeyboardUpFunc(KeyBoardCallBackUp);
 
-		texture Tex = texture::loadBMP("hello.bmp");
+		texture *Tex = texture::loadBMP("hello.bmp");
 
 		glutMainLoop();
 		/*****************************************************************************************************************

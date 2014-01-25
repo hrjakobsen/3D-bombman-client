@@ -1,4 +1,5 @@
 #include "texture.h"
+#include <GL\glut.h>
 
 texture::texture(void* data, int w, int h, int format)
 {
