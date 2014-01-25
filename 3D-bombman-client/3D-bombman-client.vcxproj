@@ -84,6 +84,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="blocks.h" />
     <ClInclude Include="chat_message.hpp" />
     <ClInclude Include="controls.h" />
     <ClInclude Include="gametimer.h" />

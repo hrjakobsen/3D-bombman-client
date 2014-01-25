@@ -1,7 +1,3 @@
-#define BLOCK_AIR 0
-#define BLOCK_BLOCK 1
-#define BLOCK_BOX 2
-
 #include <GL\glut.h>
 #include <Windows.h>
 #include "vectors.h"
@@ -15,6 +11,7 @@
 #include <thread>
 #include <time.h>
 #include <chrono>
+#include "blocks.h"
 
 
 //GAME SETUP
@@ -50,7 +47,7 @@ short World[100][100] = {
 	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
 	{ 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 },
 	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
 	};
 
 //WINDOW

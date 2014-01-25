@@ -28,16 +28,21 @@ void CreateBaseLayer() {
 	glutWireCube(1);
 }
 
-void GenerateTerrain(){
-	for (int i = 0; i < WorldWidth; i++) {
-		for (int j = 0; j < WorldDepth; j++) {
-			for (int k = 0; k < WorldHeight; k++) {
-				glTranslatef((float)i, (float)j, (float)k);
-				glutSolidCube(1);
-				glTranslatef(-(float)i, -(float)j, -(float)k);
-			}
+void GenerateWorld(){
+	glTranslatef(1, 0, 0);
+	glTranslatef(WorldSize / 2, -(WorldSize / 2), WorldSize / 2);
+	glutSolidCube(WorldSize);
+	glTranslatef(-(WorldSize / 2), WorldSize / 2, -(WorldSize / 2));
+	for (int i = 0; i < WorldSize; i++) {
+		for (int j = 0; j < WorldSize; j++) {
+			//glutWireCube(1);
+			glTranslatef(1, 0, 0);
 		}
+		glTranslatef(WorldSize*-1, 0, 0);
+		glTranslatef(0, 0, 1);
 	}
+	glTranslatef(1, 1, (WorldSize*-1)+1);
+	glutWireCube(1);
 }
 
 void DrawCross() {
@@ -71,7 +76,7 @@ void display(void) {
 	}
 	glTranslatef(-0.5, -BodyHeight*.95 - 0.5, -0.5);
 	glTranslatef(-BodyPosition.x, -BodyPosition.y, -BodyPosition.z);
-	CreateBaseLayer();
+	GenerateWorld();
 	glutSwapBuffers();
 }
 
