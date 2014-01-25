@@ -27,13 +27,21 @@ void MouseMotion(int x, int y) {
 
 void KeyBoardCallBackUp(unsigned char key, int x, int y) {
 	KEYS[key] = false;
+	if (key == 'W' || key == 'A' || key == 'S' || key == 'D') {
+		KEYS[key + 32] = false;
+	}
 }
 
 void KeyBoardCallBackDown(unsigned char key, int x, int y) {
 	KEYS[key] = true;
+	if (key == 'W' || key == 'A' || key == 'S' || key == 'D') {
+		KEYS[key] = false;
+		KEYS[key + 32] = true;
+	}
 }
 
 void KeyBoardUpdate() {
+	vectorJB OldPos = BodyPosition;
 	if (KEYS['w']) {
 		vectorJB movement = { sinf(CameraAngle.x * DEC2RAD), 0, -1 * cosf(CameraAngle.x * DEC2RAD) };
 		movement = Times(movement, MovementSpeed);
@@ -54,8 +62,14 @@ void KeyBoardUpdate() {
 		movement = Times(movement, MovementSpeed);
 		BodyPosition = Subtract(BodyPosition, movement);
 	}
-	if (KEYS[27]) {
+	if (KEYS[27]) { // ESC
 		glutDestroyWindow(glutGetWindow());
 		exit(0);
+	}
+	if (World[(int)OldPos.x][(int)BodyPosition.z] != BLOCK_AIR) {
+		BodyPosition.z = OldPos.z;
+	} 
+	if (World[(int)BodyPosition.x][(int)OldPos.z] != BLOCK_AIR) {
+		BodyPosition.x = OldPos.x;
 	}
 }

@@ -60,7 +60,7 @@ float BodyHeight = 0.75; //Camera is at 95% of height
 float BodyWidth = .75; //Shoulderwidth
 
 //Propeties
-float MovementSpeed = 0.08; // 
+float MovementSpeed = 0.04; // 
 
 //CAMERA
 vectorJB CameraAngle = { 0, 0, 0 };

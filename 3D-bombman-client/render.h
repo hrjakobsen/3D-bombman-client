@@ -33,6 +33,7 @@ void GenerateWorld(){
 	glTranslatef(WorldSize / 2, -(WorldSize / 2), WorldSize / 2);
 	glutSolidCube(WorldSize);
 	glTranslatef(-(WorldSize / 2), WorldSize / 2, -(WorldSize / 2));
+	glTranslatef(0, 1, (WorldSize*-1));
 	for (int i = 0; i < WorldSize; i++) {
 		for (int j = 0; j < WorldSize; j++) {
 			//glutWireCube(1);
@@ -41,8 +42,6 @@ void GenerateWorld(){
 		glTranslatef(WorldSize*-1, 0, 0);
 		glTranslatef(0, 0, 1);
 	}
-	glTranslatef(1, 1, (WorldSize*-1)+1);
-	glutWireCube(1);
 }
 
 void DrawCross() {
