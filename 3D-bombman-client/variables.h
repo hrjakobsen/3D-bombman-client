@@ -1,6 +1,6 @@
 #define BLOCK_AIR 0
-#define BLOCK_GRASS 1
-#define BLOCK_STONE 2
+#define BLOCK_BLOCK 1
+#define BLOCK_BOX 2
 
 #include <GL\glut.h>
 #include <Windows.h>
@@ -34,14 +34,31 @@ bool FirstPersonView = true;
 int WorldWidth = 100;
 int WorldHeight = 3;
 int WorldDepth = 100;
-short World[100][100];
+int WorldSize = 15;
+short World[100][100] = { 
+	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+	{ 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+	{ 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+	{ 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+	{ 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+	{ 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+	{ 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+	};
 
 //WINDOW
 int ScreenWidth;
 int ScreenHeight;
 
 //BODY
-vectorJB BodyPosition = { 0, 0, 0 }; // Center of feet
+vectorJB BodyPosition = { 1.5, 0, 1.5 }; // Center of feet
 float BodyHeight = 0.75; //Camera is at 95% of height
 float BodyWidth = .75; //Shoulderwidth
 
