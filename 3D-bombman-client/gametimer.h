@@ -4,9 +4,9 @@ int FramesCount = 0;
 void Gametimer() {
 	double Diff = clock() - LastGameTick;
 	Diff = Diff / CLOCKS_PER_SEC;
-	if (Diff > .1 / FramesPerSecond) {
+	if (Diff > 1 / FramesPerSecond) {
 		LastGameTick = clock();
-		KeyBoardUpdate();
+		KeyBoardUpdate(Diff);
 		display();
 		FramesCount++;
 	}

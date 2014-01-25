@@ -40,26 +40,30 @@ void KeyBoardCallBackDown(unsigned char key, int x, int y) {
 	}
 }
 
-void KeyBoardUpdate() {
+void KeyBoardUpdate(float Diff) {
 	vectorJB OldPos = BodyPosition;
 	if (KEYS['w']) {
 		vectorJB movement = { sinf(CameraAngle.x * DEC2RAD), 0, -1 * cosf(CameraAngle.x * DEC2RAD) };
 		movement = Times(movement, MovementSpeed);
+		movement = Times(movement, (Diff));
 		BodyPosition = Subtract(BodyPosition, movement);
 	}
 	if (KEYS['s']) {
 		vectorJB movement = { sinf(CameraAngle.x * DEC2RAD), 0, -1 * cosf(CameraAngle.x * DEC2RAD) };
 		movement = Times(movement, MovementSpeed);
+		movement = Times(movement, (Diff));
 		BodyPosition = Add(BodyPosition, movement);
 	}
 	if (KEYS['a']) {
 		vectorJB movement = { cosf(CameraAngle.x * DEC2RAD), 0, sinf(CameraAngle.x * DEC2RAD) };
 		movement = Times(movement, MovementSpeed);
+		movement = Times(movement, (Diff));
 		BodyPosition = Add(BodyPosition, movement);
 	}
 	if (KEYS['d']) {
 		vectorJB movement = { cosf(CameraAngle.x * DEC2RAD), 0, sinf(CameraAngle.x * DEC2RAD) };
 		movement = Times(movement, MovementSpeed);
+		movement = Times(movement, (Diff));
 		BodyPosition = Subtract(BodyPosition, movement);
 	}
 	if (KEYS[27]) { // ESC
