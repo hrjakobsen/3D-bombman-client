@@ -9,17 +9,12 @@
 //
 
 
-#include <cstdlib>
-#include <ctime>
-#include <string.h>
-#include <deque>
-#include <iostream>
-#include <thread>
+
 #include <boost/asio.hpp>
 #include <boost/format.hpp>
 #include "chat_message.hpp"
-#include <time.h>
 #include <boost/date_time/posix_time/posix_time.hpp>
+#include "gametimer.h"
 
 using boost::asio::ip::tcp;
 
@@ -202,7 +197,7 @@ int main(int argc, char* argv[])
 
 		std::thread t([&io_service](){ io_service.run(); });
 
-		char line[chat_message::max_body_length + 1];
+		/*char line[chat_message::max_body_length + 1];
 		while (std::cin.getline(line, chat_message::max_body_length + 1))
 		{
 			chat_message msg;
@@ -214,7 +209,20 @@ int main(int argc, char* argv[])
 			std::cout << now_str() << "\n";
 			c.write(msg);
 
-		}
+		}*/
+
+
+		/*****************************************************************************************************************
+		*********************************************************GLUT*****************************************************
+		*****************************************************************************************************************/
+		glutInit(&argc, argv);
+		glutInitWindowPosition(0, 0);
+		glutInitWindowSize(1360, 700);
+		glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
+		glutCreateWindow("Life in a Box");
+		glutSetCursor(GLUT_CURSOR_NONE);
+		glEnable(GL_DEPTH_TEST);
+		glutFullScreen();
 
 		c.close();
 		t.join();

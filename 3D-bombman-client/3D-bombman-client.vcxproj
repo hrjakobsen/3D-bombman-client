@@ -89,7 +89,7 @@
     <ClInclude Include="gametimer.h" />
     <ClInclude Include="render.h" />
     <ClInclude Include="variables.h" />
-    <ClInclude Include="vector.h" />
+    <ClInclude Include="vectors.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
