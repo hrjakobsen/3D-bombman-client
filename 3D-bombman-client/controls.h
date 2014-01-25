@@ -66,10 +66,10 @@ void KeyBoardUpdate() {
 		glutDestroyWindow(glutGetWindow());
 		exit(0);
 	}
-	if (World[(int)OldPos.x][(int)BodyPosition.z] == 1) {
+	if (World[(int)OldPos.x][(int)BodyPosition.z] != 1) {
 		BodyPosition.z = OldPos.z;
 	} 
-	if (World[(int)BodyPosition.x][(int)OldPos.z] == 1) {
+	if (World[(int)BodyPosition.x][(int)OldPos.z] != 1) {
 		BodyPosition.x = OldPos.x;
 	}
 }
