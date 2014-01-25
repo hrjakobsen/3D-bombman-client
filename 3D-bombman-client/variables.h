@@ -31,8 +31,8 @@ bool FirstPersonView = true;
 int WorldWidth = 100;
 int WorldHeight = 3;
 int WorldDepth = 100;
-int WorldSize = 15;
-short World[100][100] = { 
+const int WorldSize = 15;
+short World[WorldSize][WorldSize] = {
 	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
 	{ 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 },
@@ -58,6 +58,7 @@ int ScreenHeight;
 vectorJB BodyPosition = { 1.5, 0, 1.5 }; // Center of feet
 float BodyHeight = 0.75; //Camera is at 95% of height
 float BodyWidth = .75; //Shoulderwidth
+float BodyRadius = 0.2; // For colision detection if set to 0.2 a minimum of 0.4 space is required to pass through
 
 //Propeties
 float MovementSpeed = 0.04; // 

@@ -68,8 +68,32 @@ void KeyBoardUpdate() {
 	}
 	if (World[(int)OldPos.x][(int)BodyPosition.z] != BLOCK_AIR) {
 		BodyPosition.z = OldPos.z;
-	} 
+	}
 	if (World[(int)BodyPosition.x][(int)OldPos.z] != BLOCK_AIR) {
+		BodyPosition.x = OldPos.x;
+	}
+	if (World[(int)(OldPos.x + BodyRadius)][(int)BodyPosition.z] != BLOCK_AIR) {
+		BodyPosition.z = OldPos.z;
+	}
+	if (World[(int)(BodyPosition.x + BodyRadius)][(int)OldPos.z] != BLOCK_AIR) {
+		BodyPosition.x = OldPos.x;
+	}
+	if (World[(int)OldPos.x][(int)(BodyPosition.z + BodyRadius)] != BLOCK_AIR) {
+		BodyPosition.z = OldPos.z;
+	}
+	if (World[(int)BodyPosition.x][(int)(OldPos.z + BodyRadius)] != BLOCK_AIR) {
+		BodyPosition.x = OldPos.x;
+	}
+	if (World[(int)(OldPos.x - BodyRadius)][(int)BodyPosition.z] != BLOCK_AIR) {
+		BodyPosition.z = OldPos.z;
+	}
+	if (World[(int)(BodyPosition.x - BodyRadius)][(int)OldPos.z] != BLOCK_AIR) {
+		BodyPosition.x = OldPos.x;
+	}
+	if (World[(int)OldPos.x][(int)(BodyPosition.z - BodyRadius)] != BLOCK_AIR) {
+		BodyPosition.z = OldPos.z;
+	}
+	if (World[(int)BodyPosition.x][(int)(OldPos.z - BodyRadius)] != BLOCK_AIR) {
 		BodyPosition.x = OldPos.x;
 	}
 }
