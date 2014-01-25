@@ -69,7 +69,7 @@ void display(void) {
 	else {
 		gluLookAt(0, 0, 3, 0, 0, 4, 0, 1, 0);
 	}
-	glTranslatef(0, -BodyHeight*.95, 0);
+	glTranslatef(0, -BodyHeight*.95 - 0.5, 0);
 	glTranslatef(-BodyPosition.x, -BodyPosition.y, -BodyPosition.z);
 	CreateBaseLayer();
 	glutSwapBuffers();

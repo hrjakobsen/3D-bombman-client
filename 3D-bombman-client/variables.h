@@ -34,7 +34,7 @@ bool FirstPersonView = true;
 int WorldWidth = 100;
 int WorldHeight = 3;
 int WorldDepth = 100;
-short World[100][3][100];
+short World[100][100];
 
 //WINDOW
 int ScreenWidth;
@@ -42,7 +42,7 @@ int ScreenHeight;
 
 //BODY
 vectorJB BodyPosition = { 0, 0, 0 }; // Center of feet
-float BodyHeight = 1.826; //Camera is at 95% of height
+float BodyHeight = 0.75; //Camera is at 95% of height
 float BodyWidth = .75; //Shoulderwidth
 
 //Propeties
