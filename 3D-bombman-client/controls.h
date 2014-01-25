@@ -27,10 +27,17 @@ void MouseMotion(int x, int y) {
 
 void KeyBoardCallBackUp(unsigned char key, int x, int y) {
 	KEYS[key] = false;
+	if (key == 'W' || key == 'A' || key == 'S' || key == 'D') {
+		KEYS[key + 32] = false;
+	}
 }
 
 void KeyBoardCallBackDown(unsigned char key, int x, int y) {
 	KEYS[key] = true;
+	if (key == 'W' || key == 'A' || key == 'S' || key == 'D') {
+		KEYS[key] = false;
+		KEYS[key + 32] = true;
+	}
 }
 
 void KeyBoardUpdate() {
