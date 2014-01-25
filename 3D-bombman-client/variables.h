@@ -11,3 +11,5 @@
 #include <thread>
 #include <time.h>
 #include <chrono>
+
+chat_client c;
