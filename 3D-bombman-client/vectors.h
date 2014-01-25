@@ -1,3 +1,5 @@
+
+
 struct vectorJB {
 	float x, y, z;
 };
