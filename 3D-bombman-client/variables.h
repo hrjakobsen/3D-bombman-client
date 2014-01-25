@@ -15,7 +15,7 @@
 
 
 //GAME SETUP
-float FramesPerSecond = 20;
+float FramesPerSecond = 60;
 //VARS
 
 float DEC2RAD = 3.14 / 180;
@@ -61,7 +61,7 @@ float BodyWidth = .75; //Shoulderwidth
 float BodyRadius = 0.2; // For colision detection if set to 0.2 a minimum of 0.4 space is required to pass through
 
 //Propeties
-float MovementSpeed = 0.04; // 
+float MovementSpeed = 1; // m/s
 
 //CAMERA
 vectorJB CameraAngle = { 0, 0, 0 };
