@@ -1,4 +1,11 @@
 #include "variables.h"
+#ifndef TEXTURE_H
+#define TEXTURE_H
+
+// add the content of the header file here
+
+
+
 #pragma once
 
 class texture
@@ -10,3 +17,4 @@ public:
 	~texture();
 };
 
+#endif 

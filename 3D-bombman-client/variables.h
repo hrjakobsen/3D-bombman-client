@@ -1,18 +1,4 @@
-#include <GL\glut.h>
-#include <Windows.h>
-//#include "vectors.h"
-#include <iostream>
-#include "math.h"
-#include <math.h>
-#include <cstdlib>
-#include <ctime>
-#include <string.h>
-#include <deque>
-
-#include <thread>
-#include <time.h>
-#include <chrono>
-#include "blocks.h"
+#include "vectors.h"
 
 
 //GAME SETUP

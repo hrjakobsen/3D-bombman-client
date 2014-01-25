@@ -1,4 +1,20 @@
+#ifndef VECTORS_H
+#define VECTORS_H
 
+
+#include <iostream>
+#include <Windows.h>
+#include <GL\glut.h>
+#include "math.h"
+#include <math.h>
+#include <cstdlib>
+#include <ctime>
+#include <string.h>
+#include <deque>
+#include <thread>
+#include <time.h>
+#include <chrono>
+#include "blocks.h"
 
 struct vectorJB {
 	float x, y, z;
@@ -25,3 +41,7 @@ vectorJB Subtract(vectorJB v1, vectorJB v2) {
 	vectorJB v = { v1.x - v2.x, v1.y - v2.y, v1.z - v2.z };
 	return v;
 }
+// add the content of the header file here
+
+
+#endif 
