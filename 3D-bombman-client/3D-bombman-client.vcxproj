@@ -85,6 +85,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chat_message.hpp" />
+    <ClInclude Include="controls.h" />
+    <ClInclude Include="gametimer.h" />
+    <ClInclude Include="render.h" />
+    <ClInclude Include="variables.h" />
+    <ClInclude Include="vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
