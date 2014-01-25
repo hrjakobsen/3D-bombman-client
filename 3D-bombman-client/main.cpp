@@ -20,6 +20,34 @@ using boost::asio::ip::tcp;
 
 typedef std::deque<chat_message> chat_message_queue;
 
+std::string MsgToSend = "";
+std::string IP;
+
+std::string PORT;
+void StartAndSend();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 std::string now_str()
 {
 	// Get current time from the clock, using microseconds resolution
@@ -131,9 +159,22 @@ private:
 		{
 			if (!ec)
 			{
-				std::cout.write(read_msg_.body(), read_msg_.body_length());
+				//std::cout.write(read_msg_.body(), read_msg_.body_length());
 				std::cout << " - " << now_str() << "\n";
 				do_read_header();
+
+				MsgToSend = "HejHejHej";
+				char line[chat_message::max_body_length + 1];
+				for (int i = 0; i < MsgToSend.length(); i++) {
+					line[i] = MsgToSend[i];
+				}
+				chat_message msg;
+				msg.body_length(std::strlen(line));
+				std::memcpy(msg.body(), line, msg.body_length());
+				msg.encode_header();
+
+				std::this_thread::sleep_for(std::chrono::milliseconds(50));
+				write(msg);
 			}
 			else
 			{
@@ -171,16 +212,16 @@ private:
 	chat_message_queue write_msgs_;
 };
 
+
+
 int main(int argc, char* argv[])
 {
 	try
 	{
-		std::cout << "Server IP:\n";
-		std::string IP;
+		/*std::cout << "Server IP:\n";
 		std::cin >> IP;
 
 		std::cout << "Server PORT:\n";
-		std::string PORT;
 		std::cin >> PORT;
 
 		if (argc != 3)
@@ -196,20 +237,17 @@ int main(int argc, char* argv[])
 		chat_client c(io_service, endpoint_iterator);
 		std::thread t([&io_service](){ io_service.run(); });
 
-		/*char line[chat_message::max_body_length + 1];
-		while (std::cin.getline(line, chat_message::max_body_length + 1))
-		{
-			chat_message msg;
-			msg.body_length(std::strlen(line));
-			std::memcpy(msg.body(), line, msg.body_length());
-			msg.encode_header();
 
-
-			std::cout << now_str() << "\n";
-			c.write(msg);
-
-		}*/
-
+		MsgToSend = "HejHejHej";
+		char line[chat_message::max_body_length + 1];
+		for (int i = 0; i < MsgToSend.length(); i++) {
+			line[i] = MsgToSend[i];
+		}
+		chat_message msg;
+		msg.body_length(std::strlen(line));
+		std::memcpy(msg.body(), line, msg.body_length());
+		msg.encode_header();
+		c.write(msg);*/
 
 		/*****************************************************************************************************************
 		*********************************************************GLUT*****************************************************
@@ -223,19 +261,22 @@ int main(int argc, char* argv[])
 		glutCreateWindow("3D bombman");
 		glutSetCursor(GLUT_CURSOR_NONE);
 		glEnable(GL_DEPTH_TEST);
-		glutFullScreen();
+		//glutFullScreen();
 
 		//Register callbacks
 		glutDisplayFunc(display);
 		glutReshapeFunc(reshape);
+		glutMotionFunc(MouseMotion);
+		glutPassiveMotionFunc(MouseMotion);
 		glutIdleFunc(Gametimer);
+		glutKeyboardFunc(KeyBoardCallBackDown);
+		glutKeyboardUpFunc(KeyBoardCallBackUp);
 
 		glutMainLoop();
 		/*****************************************************************************************************************
 		*************************************************GLUT FINISHED****************************************************
 		*****************************************************************************************************************/
-		c.close();
-		t.join();
+		
 	}
 	catch (std::exception& e)
 	{
@@ -243,4 +284,16 @@ int main(int argc, char* argv[])
 	}
 
 	return 0;
+}
+
+void StartAndSend() {
+
+	try {
+		
+
+		
+
+	} catch (std::exception& e) {
+		std::cerr << "Exception: " << e.what() << "\n";
+	}
 }
