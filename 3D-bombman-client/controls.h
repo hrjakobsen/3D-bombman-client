@@ -41,6 +41,7 @@ void KeyBoardCallBackDown(unsigned char key, int x, int y) {
 }
 
 void KeyBoardUpdate() {
+	vectorJB OldPos = BodyPosition;
 	if (KEYS['w']) {
 		vectorJB movement = { sinf(CameraAngle.x * DEC2RAD), 0, -1 * cosf(CameraAngle.x * DEC2RAD) };
 		movement = Times(movement, MovementSpeed);
@@ -61,8 +62,14 @@ void KeyBoardUpdate() {
 		movement = Times(movement, MovementSpeed);
 		BodyPosition = Subtract(BodyPosition, movement);
 	}
-	if (KEYS[27]) {
+	if (KEYS[27]) { // ESC
 		glutDestroyWindow(glutGetWindow());
 		exit(0);
+	}
+	if (World[(int)OldPos.x][(int)BodyPosition.z] == 1) {
+		BodyPosition.z = OldPos.z;
+	} 
+	if (World[(int)BodyPosition.x][(int)OldPos.z] == 1) {
+		BodyPosition.x = OldPos.x;
 	}
 }
