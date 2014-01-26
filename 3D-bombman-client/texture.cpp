@@ -44,7 +44,7 @@ texture *texture::loadBMP(const char* filename){
 	unsigned short bitsPerPixel;
 	unsigned int compressionMethod;
 	unsigned int bmpDataSize;
-	
+
 	fseek(fp, 0x000a, SEEK_SET);
 	fread(&bmpDataLocation, 1, sizeof(unsigned int), fp);
 
@@ -68,10 +68,10 @@ texture *texture::loadBMP(const char* filename){
 	fread(bmpData, bmpDataSize, sizeof(unsigned char), fp);
 
 	fclose(fp);
-	std::cout << "file loaded correctly!\n" << bmpHeight << "\n" << bmpWidth << "\n";
+	std::cout << "file loaded correctly!\n";
 	return new texture(bmpData, bmpWidth, bmpHeight, GL_RGB);
 
-	
+
 }
 texture::~texture()
 {
