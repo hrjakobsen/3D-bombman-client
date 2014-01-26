@@ -95,14 +95,14 @@ void UpdateBombs(float Diff) {
 			BombID ++;
 			if (BombWorld[i][ii].armed) {
 				BombWorld[i][ii].age += Diff;
-				if (BombWorld[i][ii].age > 5 && !BombWorld[1][ii].FireDrawen) {
-					BombWorld[1][ii].FireDrawen = true;
+				if (BombWorld[i][ii].age > 5 && !BombWorld[i][ii].FireDrawen) {
+					BombWorld[i][ii].FireDrawen = true;
 					World[i][ii] = BLOCK_CFIRE;
 					BombFireWorld[i][ii] = BombID;
 					for (int f = 1; f <= BombWorld[i][ii].power; f++) {
 						int Ni = i + f;
 						int Nii = ii;
-						if (Ni < 0 || Nii < 0 || Ni >= WorldSize || Nii >= WorldSize || World[Ni][Nii] == BLOCK_WALL) {
+						if ( World[Ni][Nii] == BLOCK_WALL) {
 							break;
 						}
 						World[Ni][Nii] = BLOCK_XFIRE;
@@ -111,7 +111,7 @@ void UpdateBombs(float Diff) {
 					for (int f = 1; f <= BombWorld[i][ii].power; f++) {
 						int Ni = i - f;
 						int Nii = ii;
-						if (Ni < 0 || Nii < 0 || Ni >= WorldSize || Nii >= WorldSize || World[Ni][Nii] == BLOCK_WALL) {
+						if (World[Ni][Nii] == BLOCK_WALL) {
 							break;
 						}
 						World[Ni][Nii] = BLOCK_XFIRE;
@@ -120,7 +120,7 @@ void UpdateBombs(float Diff) {
 					for (int f = 1; f <= BombWorld[i][ii].power; f++) {
 						int Ni = i;
 						int Nii = ii + f;
-						if (Ni < 0 || Nii < 0 || Ni >= WorldSize || Nii >= WorldSize || World[Ni][Nii] == BLOCK_WALL) {
+						if (World[Ni][Nii] == BLOCK_WALL) {
 							break;
 						}
 						World[Ni][Nii] = BLOCK_ZFIRE;
@@ -129,7 +129,7 @@ void UpdateBombs(float Diff) {
 					for (int f = 1; f <= BombWorld[i][ii].power; f++) {
 						int Ni = i;
 						int Nii = ii - f;
-						if (Ni < 0 || Nii < 0 || Ni >= WorldSize || Nii >= WorldSize || World[Ni][Nii] == BLOCK_WALL) {
+						if (World[Ni][Nii] == BLOCK_WALL) {
 							break;
 						}
 						World[Ni][Nii] = BLOCK_ZFIRE;
@@ -139,6 +139,7 @@ void UpdateBombs(float Diff) {
 					BombWorld[i][ii].armed = false;
 					BombWorld[i][ii].age = 0;
 					BombWorld[i][ii].FireDrawen = false;
+					BombWorld[i][ii].power = 0;
 					for (int i = 0; i < WorldSize; i++) {
 						for (int ii = 0; ii < WorldSize; ii++) {
 							if (BombFireWorld[i][ii] == BombID) {

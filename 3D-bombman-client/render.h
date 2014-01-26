@@ -199,8 +199,9 @@ void display(void) {
 
 	//texture *Tex = texture::loadBMP("stone.bmp");
 	DrawCubeWithText(1, Tex->textureID);
-	
-	
+	Bomb = gluNewQuadric();
+	gluQuadricTexture(Bomb, GL_TRUE);
+
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glutSwapBuffers();
