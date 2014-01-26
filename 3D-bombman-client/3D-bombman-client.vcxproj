@@ -99,6 +99,9 @@
     <Image Include="stone.bmp" />
     <Image Include="tiles.bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Downloads\gltexture\texture.raw" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
