@@ -83,9 +83,10 @@ void display(void) {
 	glTranslatef(-0.5, -BodyHeight*.95 - 0.5, -0.5);
 	glTranslatef(-BodyPosition.x, -BodyPosition.y, -BodyPosition.z);
 	GenerateWorld();
-	texture *Tex = texture::loadBMP("tiles.bmp");
-	glBindTexture(GL_TEXTURE_2D, Tex->textureID);
 
+	//texture *Tex = texture::loadBMP("stone.bmp");
+	glBindTexture(GL_TEXTURE_2D, Tex->textureID);
+	cout << Tex->textureID << "\n";
 	glBegin(GL_QUADS);
 	glColor3f(1, 1, 1);
 

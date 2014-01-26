@@ -16,6 +16,7 @@
 #include "blocks.h"
 #include "texture.h"
 
+texture *Tex;
 
 //GAME SETUP
 float FramesPerSecond = 60;

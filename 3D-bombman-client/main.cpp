@@ -263,7 +263,7 @@ int main(int argc, char* argv[])
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_TEXTURE_2D);
 		//glutFullScreen();
-
+		Tex = texture::loadBMP("stone.bmp");
 		//Register callbacks
 		glutDisplayFunc(display);
 		glutReshapeFunc(reshape);
