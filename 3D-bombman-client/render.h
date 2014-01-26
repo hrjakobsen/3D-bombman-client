@@ -122,7 +122,9 @@ void GenerateWorld(){
 				glRotatef(90, -1, 0, 0);
 			}
 			if ((World[z][x] == BLOCK_WALL)) {
+				glColor3f(0,0,0);
 				DrawCubeWithText(1, Tex->textureID);
+				glColor3f(1,1,1);
 			}
 			////////////////////////////////////////////////////BOMB FIRE //////////////////////////////////////////////
 			glTranslatef(0, -0.25, 0);

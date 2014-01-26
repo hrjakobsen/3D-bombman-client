@@ -270,7 +270,7 @@ int main(int argc, char* argv[])
 		glDepthRange(0.0, 1.0);
 
 		//glutFullScreen();
-		Tex = texture::loadBMP("stone.bmp");
+		Tex = texture::loadBMP("crate.bmp");
 		BombTex = texture::loadBMP("bomb.bmp");
 		FireTex = texture::loadBMP("fire.bmp");
 		//Register callbacks
