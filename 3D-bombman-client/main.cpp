@@ -261,6 +261,7 @@ int main(int argc, char* argv[])
 		glutCreateWindow("3D bombman");
 		glutSetCursor(GLUT_CURSOR_NONE);
 		glEnable(GL_DEPTH_TEST);
+		glEnable(GL_TEXTURE_2D);
 		//glutFullScreen();
 
 		//Register callbacks
@@ -272,7 +273,7 @@ int main(int argc, char* argv[])
 		glutKeyboardFunc(KeyBoardCallBackDown);
 		glutKeyboardUpFunc(KeyBoardCallBackUp);
 
-		//texture *Tex = texture::loadBMP("hello.bmp");
+		
 
 		glutMainLoop();
 		/*****************************************************************************************************************

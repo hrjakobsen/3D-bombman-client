@@ -1,4 +1,5 @@
 #include "controls.h"
+texture *Tex = texture::loadBMP("tiles.bmp");
 
 void CreateBaseLayer() {
 	glColor3f(0, 1, 0);
@@ -79,6 +80,28 @@ void display(void) {
 	glTranslatef(-0.5, -BodyHeight*.95 - 0.5, -0.5);
 	glTranslatef(-BodyPosition.x, -BodyPosition.y, -BodyPosition.z);
 	GenerateWorld();
+
+	glBindTexture(GL_TEXTURE_2D, Tex->textureID);
+
+	glBegin(GL_QUADS);
+	glColor3f(1, 1, 1);
+
+	glTexCoord2f(10, 10);
+	glVertex3f(10, 0, 10);
+
+	glTexCoord2f(-10, 10);
+	glVertex3f(-10, 0, 10);
+
+	glTexCoord2f(-10, -10);
+	glVertex3f(-10, 0, -10);
+
+	glTexCoord2f(10, -10);
+	glVertex3f(10, 0, -10);
+
+	glEnd();
+
+	glBindTexture(GL_TEXTURE_2D, 0);
+	
 	glutSwapBuffers();
 }
 
