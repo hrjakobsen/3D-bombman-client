@@ -71,9 +71,6 @@ void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	DrawCross();
-	
-
-
 	glRotatef(CameraAngle.y, 1, 0, 0);
 	glRotatef(CameraAngle.x, 0, 1, 0);
 
@@ -86,12 +83,11 @@ void display(void) {
 	glTranslatef(-0.5, -BodyHeight*.95 - 0.5, -0.5);
 	glTranslatef(-BodyPosition.x, -BodyPosition.y, -BodyPosition.z);
 	GenerateWorld();
-
 	texture *Tex = texture::loadBMP("tiles.bmp");
-	//glBindTexture(GL_TEXTURE_2D, Tex->textureID);
+	glBindTexture(GL_TEXTURE_2D, Tex->textureID);
 
 	glBegin(GL_QUADS);
-	//glColor3f(1, 1, 1);
+	glColor3f(1, 1, 1);
 
 	glTexCoord2f(10, 10);
 	glVertex3f(10, 0, 10);
@@ -107,7 +103,7 @@ void display(void) {
 
 	glEnd();
 
-	//glBindTexture(GL_TEXTURE_2D, 0);
+	glBindTexture(GL_TEXTURE_2D, 0);
 	glutSwapBuffers();
 }
 

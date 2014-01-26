@@ -1,10 +1,12 @@
 #include "texture.h"
 #include <GL\glut.h>
 
+
 texture::texture(void* data, int w, int h, int format)
 {
 	glGenTextures(1, &textureID);
 	glBindTexture(GL_TEXTURE_2D, textureID);
+
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, format, GL_UNSIGNED_BYTE, data);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -42,7 +44,7 @@ texture *texture::loadBMP(const char* filename){
 	unsigned short bitsPerPixel;
 	unsigned int compressionMethod;
 	unsigned int bmpDataSize;
-
+	
 	fseek(fp, 0x000a, SEEK_SET);
 	fread(&bmpDataLocation, 1, sizeof(unsigned int), fp);
 
@@ -66,10 +68,10 @@ texture *texture::loadBMP(const char* filename){
 	fread(bmpData, bmpDataSize, sizeof(unsigned char), fp);
 
 	fclose(fp);
-	std::cout << "file loaded correctly!\n";
+	std::cout << "file loaded correctly!\n" << bmpHeight << "\n" << bmpWidth << "\n";
 	return new texture(bmpData, bmpWidth, bmpHeight, GL_RGB);
 
-
+	
 }
 texture::~texture()
 {
