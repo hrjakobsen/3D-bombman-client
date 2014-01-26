@@ -87,7 +87,7 @@ void display(void) {
 	glTranslatef(-BodyPosition.x, -BodyPosition.y, -BodyPosition.z);
 	GenerateWorld();
 	texture *Tex = texture::loadBMP("tiles.bmp");
-	glBindTexture(GL_TEXTURE_2D, Tex->textureID);
+	//glBindTexture(GL_TEXTURE_2D, Tex->textureID);
 
 	glBegin(GL_QUADS);
 	glColor3f(1, 1, 1);
@@ -106,7 +106,7 @@ void display(void) {
 
 	glEnd();
 
-	glBindTexture(GL_TEXTURE_2D, 0);
+	//glBindTexture(GL_TEXTURE_2D, 0);
 	glutSwapBuffers();
 }
 
