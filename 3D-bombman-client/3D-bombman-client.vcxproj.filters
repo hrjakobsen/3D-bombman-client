@@ -62,9 +62,4 @@
       <Filter>images</Filter>
     </Image>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\..\Downloads\gltexture\texture.raw">
-      <Filter>images</Filter>
-    </None>
-  </ItemGroup>
 </Project>
