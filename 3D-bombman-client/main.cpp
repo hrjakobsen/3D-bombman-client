@@ -226,8 +226,8 @@ int main(int argc, char* argv[])
 
 		if (argc != 3)
 		{
-			//std::cerr << "Usage: chat_client <host> <port>\n";
-			//return 1;
+		//std::cerr << "Usage: chat_client <host> <port>\n";
+		//return 1;
 		}
 
 		boost::asio::io_service io_service;
@@ -241,7 +241,7 @@ int main(int argc, char* argv[])
 		MsgToSend = "HejHejHej";
 		char line[chat_message::max_body_length + 1];
 		for (int i = 0; i < MsgToSend.length(); i++) {
-			line[i] = MsgToSend[i];
+		line[i] = MsgToSend[i];
 		}
 		chat_message msg;
 		msg.body_length(std::strlen(line));
@@ -252,17 +252,23 @@ int main(int argc, char* argv[])
 		/*****************************************************************************************************************
 		*********************************************************GLUT*****************************************************
 		*****************************************************************************************************************/
-		
+
 		// init GLUT and create window
 		glutInit(&argc, argv);
 		glutInitWindowPosition(0, 0);
 		glutInitWindowSize(1360, 700);
-		glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
+		glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH | GLUT_STENCIL);
 		glutCreateWindow("3D bombman");
 		glutSetCursor(GLUT_CURSOR_NONE);
 
 		glEnable(GL_DEPTH_TEST);
+		glEnable(GL_STENCIL_TEST);
 		glEnable(GL_TEXTURE_2D);
+		glEnable(GL_POLYGON_OFFSET_POINT);
+		glDepthMask(GL_TRUE);
+		glDepthFunc(GL_LEQUAL);
+		glDepthRange(0.0, 1.0);
+
 
 		//glutFullScreen();
 		Tex = texture::loadBMP("stone.bmp");

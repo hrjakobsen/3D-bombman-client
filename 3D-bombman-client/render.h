@@ -4,7 +4,7 @@ using namespace std;
 
 void DrawCubeWithText(float CubeSize, unsigned int TexID) {
 	glBindTexture(GL_TEXTURE_2D, TexID);
-	glBegin(GL_QUADS);
+	glBegin(GL_TRIANGLE_FAN);
 	glColor3f(1, 1, 1);
 	glTexCoord2f(CubeSize / 2, CubeSize / 2);
 	glVertex3f(CubeSize / 2, CubeSize / 2, CubeSize / 2);
@@ -15,7 +15,7 @@ void DrawCubeWithText(float CubeSize, unsigned int TexID) {
 	glTexCoord2f(CubeSize / 2, -CubeSize / 2);
 	glVertex3f(CubeSize / 2, CubeSize / 2, -CubeSize / 2);
 	glEnd();
-	glBegin(GL_QUADS);
+	glBegin(GL_TRIANGLE_FAN);
 	glColor3f(1, 1, 1);
 	glTexCoord2f(CubeSize / 2, CubeSize / 2);
 	glVertex3f(CubeSize / 2, CubeSize / 2, CubeSize / 2);
@@ -26,7 +26,7 @@ void DrawCubeWithText(float CubeSize, unsigned int TexID) {
 	glTexCoord2f(CubeSize / 2, -CubeSize / 2);
 	glVertex3f(CubeSize / 2, -CubeSize / 2, CubeSize / 2);
 	glEnd();
-	glBegin(GL_QUADS);
+	glBegin(GL_TRIANGLE_FAN);
 	glColor3f(1, 1, 1);
 	glTexCoord2f(CubeSize / 2, CubeSize / 2);
 	glVertex3f(CubeSize / 2, CubeSize / 2, CubeSize / 2);
@@ -37,7 +37,7 @@ void DrawCubeWithText(float CubeSize, unsigned int TexID) {
 	glTexCoord2f(CubeSize / 2, -CubeSize / 2);
 	glVertex3f(CubeSize / 2, CubeSize / 2, -CubeSize / 2);
 	glEnd();
-	glBegin(GL_QUADS);
+	glBegin(GL_TRIANGLE_FAN);
 	glColor3f(1, 1, 1);
 	glTexCoord2f(CubeSize / 2, CubeSize / 2);
 	glVertex3f(CubeSize / 2, -CubeSize / 2, CubeSize / 2);
@@ -48,7 +48,7 @@ void DrawCubeWithText(float CubeSize, unsigned int TexID) {
 	glTexCoord2f(CubeSize / 2, -CubeSize / 2);
 	glVertex3f(CubeSize / 2, -CubeSize / 2, -CubeSize / 2);
 	glEnd();
-	glBegin(GL_QUADS);
+	glBegin(GL_TRIANGLE_FAN);
 	glColor3f(1, 1, 1);
 	glTexCoord2f(CubeSize / 2, CubeSize / 2);
 	glVertex3f(CubeSize / 2, CubeSize / 2, -CubeSize / 2);
@@ -59,7 +59,7 @@ void DrawCubeWithText(float CubeSize, unsigned int TexID) {
 	glTexCoord2f(CubeSize / 2, -CubeSize / 2);
 	glVertex3f(CubeSize / 2, -CubeSize / 2, -CubeSize / 2);
 	glEnd();
-	glBegin(GL_QUADS);
+	glBegin(GL_TRIANGLE_FAN);
 	glColor3f(1, 1, 1);
 	glTexCoord2f(CubeSize / 2, CubeSize / 2);
 	glVertex3f(-CubeSize / 2, CubeSize / 2, CubeSize / 2);
@@ -112,7 +112,7 @@ void GenerateWorld(){
 	for (int x = 0; x < WorldSize; x++) {
 		for (int z = 0; z < WorldSize; z++) {
 			if (!(World[z][x] == BLOCK_AIR)) {
-				glutWireCube(1);
+				//glutWireCube(1);
 				DrawCubeWithText(1, Tex->textureID);
 			}
 			glTranslatef(1, 0, 0);
@@ -139,7 +139,8 @@ void DrawCross() {
 
 void display(void) {
 	//Reset
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	glLoadIdentity();
 	DrawCross();
 	glRotatef(CameraAngle.y, 1, 0, 0);
@@ -177,7 +178,7 @@ void reshape(int w, int h){
 	// Set the viewport to be the entire window
 	glViewport(0, 0, w, h);
 	// Set the correct perspective.
-	gluPerspective(45, ratio, 0.000001, 50);
+	gluPerspective(45, ratio, 0.01, 50);
 	// Get Back to the Modelview
 	glMatrixMode(GL_MODELVIEW);
 	display();
