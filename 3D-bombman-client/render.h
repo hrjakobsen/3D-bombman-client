@@ -113,7 +113,9 @@ void GenerateWorld(){
 			if (BombWorld[z][x].armed && BombWorld[z][x].age < 5) {
 				glColor3f(1, 0, 0);
 				glRotatef(90, 1, 0, 0);
+				glRotatef(BombWorld[z][x].age * BombWorld[z][x].age * BombWorld[z][x].age * BombWorld[z][x].age, 0, 0, 1);
 				glutWireSphere((BombWorld[z][x].age / 10), 20, 20);
+				glRotatef(BombWorld[z][x].age * BombWorld[z][x].age * BombWorld[z][x].age * BombWorld[z][x].age, 0, 0, -1);
 				glRotatef(90, -1, 0, 0);
 				glColor3f(1, 1, 1);
 			}

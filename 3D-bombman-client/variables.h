@@ -102,7 +102,7 @@ void UpdateBombs(float Diff) {
 					for (int f = 1; f <= BombWorld[i][ii].power; f++) {
 						int Ni = i + f;
 						int Nii = ii;
-						if (Ni < 0 || Nii < 0 || Ni >= WorldSize || Nii >= WorldSize || World[Ni][Nii] != BLOCK_AIR) {
+						if (Ni < 0 || Nii < 0 || Ni >= WorldSize || Nii >= WorldSize || World[Ni][Nii] == BLOCK_WALL) {
 							break;
 						}
 						World[Ni][Nii] = BLOCK_XFIRE;
@@ -111,7 +111,7 @@ void UpdateBombs(float Diff) {
 					for (int f = 1; f <= BombWorld[i][ii].power; f++) {
 						int Ni = i - f;
 						int Nii = ii;
-						if (Ni < 0 || Nii < 0 || Ni >= WorldSize || Nii >= WorldSize || World[Ni][Nii] != BLOCK_AIR) {
+						if (Ni < 0 || Nii < 0 || Ni >= WorldSize || Nii >= WorldSize || World[Ni][Nii] == BLOCK_WALL) {
 							break;
 						}
 						World[Ni][Nii] = BLOCK_XFIRE;
@@ -120,7 +120,7 @@ void UpdateBombs(float Diff) {
 					for (int f = 1; f <= BombWorld[i][ii].power; f++) {
 						int Ni = i;
 						int Nii = ii + f;
-						if (Ni < 0 || Nii < 0 || Ni >= WorldSize || Nii >= WorldSize || World[Ni][Nii] != BLOCK_AIR) {
+						if (Ni < 0 || Nii < 0 || Ni >= WorldSize || Nii >= WorldSize || World[Ni][Nii] == BLOCK_WALL) {
 							break;
 						}
 						World[Ni][Nii] = BLOCK_ZFIRE;
@@ -129,7 +129,7 @@ void UpdateBombs(float Diff) {
 					for (int f = 1; f <= BombWorld[i][ii].power; f++) {
 						int Ni = i;
 						int Nii = ii - f;
-						if (Ni < 0 || Nii < 0 || Ni >= WorldSize || Nii >= WorldSize || World[Ni][Nii] != BLOCK_AIR) {
+						if (Ni < 0 || Nii < 0 || Ni >= WorldSize || Nii >= WorldSize || World[Ni][Nii] == BLOCK_WALL) {
 							break;
 						}
 						World[Ni][Nii] = BLOCK_ZFIRE;
