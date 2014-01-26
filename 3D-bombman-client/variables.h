@@ -143,6 +143,7 @@ void UpdateBombs(float Diff) {
 						for (int ii = 0; ii < WorldSize; ii++) {
 							if (BombFireWorld[i][ii] == BombID) {
 								World[i][ii] = BLOCK_AIR;
+								BombFireWorld[i][ii] = 0;
 							}
 						}
 					}
