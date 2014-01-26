@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="crate.bmp" />
+    <Image Include="fire.bmp" />
     <Image Include="stone.bmp" />
     <Image Include="tiles.bmp" />
   </ItemGroup>

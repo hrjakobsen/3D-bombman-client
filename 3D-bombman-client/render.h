@@ -124,28 +124,28 @@ void GenerateWorld(){
 			glTranslatef(0, -0.25, 0);
 			if ((World[z][x] == BLOCK_XFIRE)) {
 				glTranslatef(0.25, 0, 0);
-				DrawCubeWithText(0.5, Tex->textureID);
+				DrawCubeWithText(0.5, FireTex->textureID);
 				glTranslatef(-0.5, 0, 0);
-				DrawCubeWithText(0.5, Tex->textureID);
+				DrawCubeWithText(0.5, FireTex->textureID);
 				glTranslatef(0.25, 0, 0);
 			}
 			if ((World[z][x] == BLOCK_ZFIRE)) {
 				glTranslatef(0, 0, 0.25);
-				DrawCubeWithText(0.5, Tex->textureID);
+				DrawCubeWithText(0.5, FireTex->textureID);
 				glTranslatef(0, 0, -0.5);
-				DrawCubeWithText(0.5, Tex->textureID);
+				DrawCubeWithText(0.5, FireTex->textureID);
 				glTranslatef(0, 0, 0.25);
 			}
 			if ((World[z][x] == BLOCK_CFIRE)) {
 				glTranslatef(0, 0, 0.25);
-				DrawCubeWithText(0.5, Tex->textureID);
+				DrawCubeWithText(0.5, FireTex->textureID);
 				glTranslatef(0, 0, -0.5);
-				DrawCubeWithText(0.5, Tex->textureID);
+				DrawCubeWithText(0.5, FireTex->textureID);
 				glTranslatef(0, 0, 0.25);
 				glTranslatef(0.25, 0, 0);
-				DrawCubeWithText(0.5, Tex->textureID);
+				DrawCubeWithText(0.5, FireTex->textureID);
 				glTranslatef(-0.5, 0, 0);
-				DrawCubeWithText(0.5, Tex->textureID);
+				DrawCubeWithText(0.5, FireTex	->textureID);
 				glTranslatef(0.25, 0, 0);
 			}
 			glTranslatef(0, 0.25, 0);

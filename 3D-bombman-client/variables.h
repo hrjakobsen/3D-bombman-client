@@ -19,6 +19,7 @@
 
 texture *Tex;
 texture *BombTex;
+texture *FireTex;
 GLUquadric *Bomb;
 
 //GAME SETUP

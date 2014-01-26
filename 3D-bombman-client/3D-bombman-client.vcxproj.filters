@@ -64,5 +64,8 @@
     <Image Include="tiles.bmp">
       <Filter>images</Filter>
     </Image>
+    <Image Include="fire.bmp">
+      <Filter>images</Filter>
+    </Image>
   </ItemGroup>
 </Project>
