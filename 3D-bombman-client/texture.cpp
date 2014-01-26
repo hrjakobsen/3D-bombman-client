@@ -68,7 +68,7 @@ texture *texture::loadBMP(const char* filename){
 	fread(bmpData, bmpDataSize, sizeof(unsigned char), fp);
 
 	fclose(fp);
-	std::cout << "file loaded correctly!\n";
+	std::cout << "file loaded correctly!\n" << bmpHeight << "\n" << bmpWidth << "\n";
 	return new texture(bmpData, bmpWidth, bmpHeight, GL_RGB);
 
 	
