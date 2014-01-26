@@ -65,7 +65,7 @@ float BodyWidth = .75; //Shoulderwidth
 float BodyRadius = 0.2; // For colision detection if set to 0.2 a minimum of 0.4 space is required to pass through
 
 //Propeties
-float MovementSpeed = 1; // m/s
+float MovementSpeed = 10; // m/s
 
 //CAMERA
 vectorJB CameraAngle = { 0, 0, 0 };

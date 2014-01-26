@@ -2,6 +2,76 @@ using namespace std;
 #include "controls.h"
 
 
+void DrawCubeWithText(float CubeSize, unsigned int TexID) {
+	glBindTexture(GL_TEXTURE_2D, TexID);
+	glBegin(GL_QUADS);
+	glColor3f(1, 1, 1);
+	glTexCoord2f(CubeSize / 2, CubeSize / 2);
+	glVertex3f(CubeSize / 2, CubeSize / 2, CubeSize / 2);
+	glTexCoord2f(-CubeSize / 2, CubeSize / 2);
+	glVertex3f(-CubeSize / 2, CubeSize / 2, CubeSize / 2);
+	glTexCoord2f(-CubeSize / 2, -CubeSize / 2);
+	glVertex3f(-CubeSize / 2, CubeSize / 2, -CubeSize / 2);
+	glTexCoord2f(CubeSize / 2, -CubeSize / 2);
+	glVertex3f(CubeSize / 2, CubeSize / 2, -CubeSize / 2);
+	glEnd();
+	glBegin(GL_QUADS);
+	glColor3f(1, 1, 1);
+	glTexCoord2f(CubeSize / 2, CubeSize / 2);
+	glVertex3f(CubeSize / 2, CubeSize / 2, CubeSize / 2);
+	glTexCoord2f(-CubeSize / 2, CubeSize / 2);
+	glVertex3f(-CubeSize / 2, CubeSize / 2, CubeSize / 2);
+	glTexCoord2f(-CubeSize / 2, -CubeSize / 2);
+	glVertex3f(-CubeSize / 2, -CubeSize / 2, CubeSize / 2);
+	glTexCoord2f(CubeSize / 2, -CubeSize / 2);
+	glVertex3f(CubeSize / 2, -CubeSize / 2, CubeSize / 2);
+	glEnd();
+	glBegin(GL_QUADS);
+	glColor3f(1, 1, 1);
+	glTexCoord2f(CubeSize / 2, CubeSize / 2);
+	glVertex3f(CubeSize / 2, CubeSize / 2, CubeSize / 2);
+	glTexCoord2f(-CubeSize / 2, CubeSize / 2);
+	glVertex3f(CubeSize / 2, - CubeSize / 2, CubeSize / 2);
+	glTexCoord2f(-CubeSize / 2, -CubeSize / 2);
+	glVertex3f(CubeSize / 2, - CubeSize / 2, -CubeSize / 2);
+	glTexCoord2f(CubeSize / 2, -CubeSize / 2);
+	glVertex3f(CubeSize / 2, CubeSize / 2, -CubeSize / 2);
+	glEnd();
+	glBegin(GL_QUADS);
+	glColor3f(1, 1, 1);
+	glTexCoord2f(CubeSize / 2, CubeSize / 2);
+	glVertex3f(CubeSize / 2, -CubeSize / 2, CubeSize / 2);
+	glTexCoord2f(-CubeSize / 2, CubeSize / 2);
+	glVertex3f(-CubeSize / 2, -CubeSize / 2, CubeSize / 2);
+	glTexCoord2f(-CubeSize / 2, -CubeSize / 2);
+	glVertex3f(-CubeSize / 2, -CubeSize / 2, -CubeSize / 2);
+	glTexCoord2f(CubeSize / 2, -CubeSize / 2);
+	glVertex3f(CubeSize / 2, -CubeSize / 2, -CubeSize / 2);
+	glEnd();
+	glBegin(GL_QUADS);
+	glColor3f(1, 1, 1);
+	glTexCoord2f(CubeSize / 2, CubeSize / 2);
+	glVertex3f(CubeSize / 2, CubeSize / 2, -CubeSize / 2);
+	glTexCoord2f(-CubeSize / 2, CubeSize / 2);
+	glVertex3f(-CubeSize / 2, CubeSize / 2, -CubeSize / 2);
+	glTexCoord2f(-CubeSize / 2, -CubeSize / 2);
+	glVertex3f(-CubeSize / 2, -CubeSize / 2, -CubeSize / 2);
+	glTexCoord2f(CubeSize / 2, -CubeSize / 2);
+	glVertex3f(CubeSize / 2, -CubeSize / 2, -CubeSize / 2);
+	glEnd();
+	glBegin(GL_QUADS);
+	glColor3f(1, 1, 1);
+	glTexCoord2f(CubeSize / 2, CubeSize / 2);
+	glVertex3f(-CubeSize / 2, CubeSize / 2, CubeSize / 2);
+	glTexCoord2f(-CubeSize / 2, CubeSize / 2);
+	glVertex3f(-CubeSize / 2, -CubeSize / 2, CubeSize / 2);
+	glTexCoord2f(-CubeSize / 2, -CubeSize / 2);
+	glVertex3f(-CubeSize / 2, -CubeSize / 2, -CubeSize / 2);
+	glTexCoord2f(CubeSize / 2, -CubeSize / 2);
+	glVertex3f(-CubeSize / 2, CubeSize / 2, -CubeSize / 2);
+	glEnd();
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
 
 void CreateBaseLayer() {
 	glColor3f(0, 1, 0);
@@ -43,6 +113,7 @@ void GenerateWorld(){
 		for (int z = 0; z < WorldSize; z++) {
 			if (!(World[z][x] == BLOCK_AIR)) {
 				glutWireCube(1);
+				DrawCubeWithText(1, Tex->textureID);
 			}
 			glTranslatef(1, 0, 0);
 		}
@@ -85,24 +156,7 @@ void display(void) {
 	GenerateWorld();
 
 	//texture *Tex = texture::loadBMP("stone.bmp");
-	glBindTexture(GL_TEXTURE_2D, Tex->textureID);
-	cout << Tex->textureID << "\n";
-	glBegin(GL_QUADS);
-	glColor3f(1, 1, 1);
-
-	glTexCoord2f(10, 10);
-	glVertex3f(10, 0, 10);
-
-	glTexCoord2f(-10, 10);
-	glVertex3f(-10, 0, 10);
-
-	glTexCoord2f(-10, -10);
-	glVertex3f(-10, 0, -10);
-
-	glTexCoord2f(10, -10);
-	glVertex3f(10, 0, -10);
-
-	glEnd();
+	DrawCubeWithText(1, Tex->textureID);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glutSwapBuffers();

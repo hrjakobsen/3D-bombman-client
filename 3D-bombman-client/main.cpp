@@ -260,8 +260,10 @@ int main(int argc, char* argv[])
 		glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 		glutCreateWindow("3D bombman");
 		glutSetCursor(GLUT_CURSOR_NONE);
+
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_TEXTURE_2D);
+
 		//glutFullScreen();
 		Tex = texture::loadBMP("stone.bmp");
 		//Register callbacks
