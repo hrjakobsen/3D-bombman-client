@@ -11,4 +11,4 @@ bool SolidBlock(int BlockID) {
 	} else {
 		return true;
 	}
-}
+} 
