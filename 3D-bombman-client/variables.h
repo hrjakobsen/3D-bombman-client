@@ -14,6 +14,7 @@
 #include <time.h>
 #include <chrono>
 #include "blocks.h"
+#include "texture.h"
 
 
 //GAME SETUP

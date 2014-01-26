@@ -82,6 +82,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blocks.h" />
@@ -89,12 +90,14 @@
     <ClInclude Include="controls.h" />
     <ClInclude Include="gametimer.h" />
     <ClInclude Include="render.h" />
+    <ClInclude Include="texture.h" />
     <ClInclude Include="variables.h" />
     <ClInclude Include="vectors.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="crate.bmp" />
     <Image Include="stone.bmp" />
+    <Image Include="tiles.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
