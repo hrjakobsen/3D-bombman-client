@@ -71,6 +71,9 @@ void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	DrawCross();
+	
+
+
 	glRotatef(CameraAngle.y, 1, 0, 0);
 	glRotatef(CameraAngle.x, 0, 1, 0);
 
