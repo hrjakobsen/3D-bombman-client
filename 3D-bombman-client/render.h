@@ -1,5 +1,7 @@
+using namespace std;
 #include "controls.h"
-texture *Tex = texture::loadBMP("tiles.bmp");
+
+
 
 void CreateBaseLayer() {
 	glColor3f(0, 1, 0);
@@ -30,6 +32,7 @@ void CreateBaseLayer() {
 }
 
 void GenerateWorld(){
+
 	glTranslatef(1, 0, 0);
 	glTranslatef(WorldSize / 2, -(WorldSize / 2), WorldSize / 2);
 	glutSolidCube(WorldSize);
@@ -83,7 +86,7 @@ void display(void) {
 	glTranslatef(-0.5, -BodyHeight*.95 - 0.5, -0.5);
 	glTranslatef(-BodyPosition.x, -BodyPosition.y, -BodyPosition.z);
 	GenerateWorld();
-
+	texture *Tex = texture::loadBMP("tiles.bmp");
 	glBindTexture(GL_TEXTURE_2D, Tex->textureID);
 
 	glBegin(GL_QUADS);
@@ -104,7 +107,6 @@ void display(void) {
 	glEnd();
 
 	glBindTexture(GL_TEXTURE_2D, 0);
-	
 	glutSwapBuffers();
 }
 
