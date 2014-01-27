@@ -236,22 +236,24 @@ private:
 				string *Data2 = Splitter(Data, ";;;");
 				int Counter = 0;
 				for (int i = 0; i <= StringCount(Data, ";;;"); i++) {
-					string *Data3 = Splitter(Data2[i], ";");
-					float PosX = atof(Data3[1].c_str());
-					float PosZ = atof(Data3[2].c_str());
-					if (Data3[0] != MyPID) {
-						OtherPos[Counter].x = atof(Data3[1].c_str());
-						OtherPos[Counter].z = atof(Data3[2].c_str());
-						Counter++;
-					}
-					for (int i = 0; i < StringCount(Data2[i], ";") - 2; i++) {
-						if (Data3[i + 3] == "B") {
-							BombWorld[(int)PosX][(int)PosZ].armed = true;
-							BombWorld[(int)PosX][(int)PosZ].power = PlayerPower;
-							BombWorld[(int)PosX][(int)PosZ].WasItMeWhoPlaced = true;
+					if (StringCount(Data2[i], ";") >= 2) {
+						string *Data3 = Splitter(Data2[i], ";");
+						float PosXX = atof(Data3[1].c_str());
+						float PosZZ = atof(Data3[2].c_str());
+						if (Data3[0] != MyPID) {
+							OtherPos[Counter].x = atof(Data3[1].c_str());
+							OtherPos[Counter].z = atof(Data3[2].c_str());
+							Counter++;
 						}
+						for (int i = 0; i < StringCount(Data2[i], ";") - 2; i++) {
+							if (Data3[i + 3] == "B") {
+								BombWorld[(int)PosXX][(int)PosZZ].armed = true;
+								BombWorld[(int)PosXX][(int)PosZZ].power = PlayerPower;
+								BombWorld[(int)PosXX][(int)PosZZ].WasItMeWhoPlaced = true;
+							}
+						}
+						cout << OtherPos[Counter].x << " - " << OtherPos[Counter].z << "\n";
 					}
-					cout << OtherPos[Counter].x << " - " << OtherPos[Counter].z << "\n";
 				}
 
 				std::this_thread::sleep_for(std::chrono::milliseconds(100));
