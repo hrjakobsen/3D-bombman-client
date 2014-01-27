@@ -171,18 +171,18 @@ void GenerateWorld(){
 }
 
 void DrawCross() {
-	glTranslatef(0, 0, -0.001);
+	glTranslatef(0, 0, -0.01);
 	glColor3f(1, 0, 0);
 	glBegin(GL_LINE_LOOP);
-	glVertex3f(0, -0.00001, 0);
-	glVertex3f(0, 0.00001, 0);
+	glVertex3f(0, -0.0001, 0);
+	glVertex3f(0, 0.0001, 0);
 	glEnd();
 	glBegin(GL_LINE_LOOP);
-	glVertex3f(-0.00001, 0, 0);
-	glVertex3f(0.00001, 0, 0);
+	glVertex3f(-0.0001, 0, 0);
+	glVertex3f(0.0001, 0, 0);
 	glEnd();
 	glColor3f(1, 1, 1);
-	glTranslatef(0, 0, 0.001);
+	glTranslatef(0, 0, 0.01);
 }
 
 void display(void) {

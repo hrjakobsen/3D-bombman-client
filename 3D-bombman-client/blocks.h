@@ -12,3 +12,11 @@ bool SolidBlock(int BlockID) {
 		return true;
 	}
 } 
+
+bool FireBlock(int BlockID) {
+	if (BlockID == BLOCK_XFIRE || BlockID == BLOCK_ZFIRE || BlockID == BLOCK_CFIRE) {
+		return true;
+	} else {
+		return false;
+	}
+}

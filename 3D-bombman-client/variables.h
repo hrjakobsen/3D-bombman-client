@@ -75,6 +75,9 @@ float BodyRadius = 0.2; // For colision detection if set to 0.2 a minimum of 0.4
 float MovementSpeed = 2.5; // m/s
 int PlayerPower = 2;
 int MaksBombs = 2;
+int LifesBack = 3;
+float LostLifeTimer = 0;
+bool InFire = false;
 
 //CAMERA
 vectorJB CameraAngle = { -45, 0, 0 };

@@ -8,6 +8,10 @@ void Gametimer() {
 		LastGameTick = clock();
 		KeyBoardUpdate(Diff);
 		UpdateBombs(Diff);
+		LostLifeTimer -= Diff;
+		if (LostLifeTimer < 0) {
+			LostLifeTimer = 0;
+		}
 		display();
 		FramesCount++;
 	}

@@ -100,6 +100,14 @@ void KeyBoardUpdate(float Diff) {
 	if (SolidBlock(World[(int)BodyPosition.x][(int)(OldPos.z - BodyRadius)])) {
 		BodyPosition.x = OldPos.x;
 	}
+	if (FireBlock(World[(int)BodyPosition.x][(int)(BodyPosition.z)])) {
+		if (!InFire) {
+			InFire = true;
+			LifesBack--;
+		}
+	} else {
+		InFire = false;
+	}
 	if (KEYS[' ']) {
 		PlaceNextTime = true;
 	}
