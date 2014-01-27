@@ -194,7 +194,6 @@ void display(void) {
 	GenerateWorld();
 
 	//texture *Tex = texture::loadBMP("stone.bmp");
-	DrawCubeWithText(1, Tex->textureID);
 	Bomb = gluNewQuadric();
 	gluQuadricTexture(Bomb, GL_TRUE);
 
