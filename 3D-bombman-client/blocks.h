@@ -6,7 +6,7 @@
 #define BLOCK_CFIRE 5
 
 bool SolidBlock(int BlockID) {
-	if (BlockID == 0) {
+	if (BlockID == BLOCK_AIR || BlockID == BLOCK_XFIRE || BlockID == BLOCK_ZFIRE || BlockID == BLOCK_CFIRE) {
 		return false;
 	} else {
 		return true;

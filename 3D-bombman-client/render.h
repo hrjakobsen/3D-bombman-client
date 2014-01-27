@@ -111,7 +111,7 @@ void GenerateWorld(){
 
 	for (int x = 0; x < WorldSize; x++) {
 		for (int z = 0; z < WorldSize; z++) {
-			if (BombWorld[z][x].armed && BombWorld[z][x].age < 5) {
+			if (BombWorld[z][x].armed && BombWorld[z][x].age < BombExplodeAge) {
 				glRotatef(90, 1, 0, 0);
 				glRotatef(BombWorld[z][x].age * BombWorld[z][x].age * BombWorld[z][x].age * BombWorld[z][x].age*BombWorld[z][x].age, 0, 0, 1);
 				Bomb = gluNewQuadric();
@@ -122,9 +122,10 @@ void GenerateWorld(){
 				glRotatef(90, -1, 0, 0);
 			}
 			if ((World[z][x] == BLOCK_WALL)) {
-				glColor3f(0,0,0);
-				DrawCubeWithText(1, Tex->textureID);
-				glColor3f(1,1,1);
+				DrawCubeWithText(1, WallTex->textureID);
+			}
+			if ((World[z][x] == BLOCK_CRATE)) {
+				DrawCubeWithText(1, CrateTex->textureID);
 			}
 			////////////////////////////////////////////////////BOMB FIRE //////////////////////////////////////////////
 			glTranslatef(0, -0.25, 0);
@@ -198,7 +199,6 @@ void display(void) {
 	GenerateWorld();
 
 	//texture *Tex = texture::loadBMP("stone.bmp");
-	DrawCubeWithText(1, Tex->textureID);
 	Bomb = gluNewQuadric();
 	gluQuadricTexture(Bomb, GL_TRUE);
 

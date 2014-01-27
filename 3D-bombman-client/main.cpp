@@ -150,7 +150,15 @@ private:
 			}
 		});
 	}
-
+	std::string MyPID;
+	bool Started = false;
+	std::string CTSS(char *Arr, int Length) {
+		std::string ReturnS = "";
+		for (int i = 0; i < Length; i++) {
+			ReturnS += Arr[i];
+		}
+		return ReturnS;
+	}
 	void do_read_body()
 	{
 		boost::asio::async_read(socket_,
@@ -159,8 +167,20 @@ private:
 		{
 			if (!ec)
 			{
+				if (MyPID == "") {
+					MyPID = read_msg_.body()[0];
+					MyPID += read_msg_.body()[1];
+				}
+				if (Started) {
+
+				} else {
+					if (CTSS(read_msg_.body(), read_msg_.body_length()) == "Start") {
+						Started = true;
+						cout << "Start\n";
+					}
+				}
 				//std::cout.write(read_msg_.body(), read_msg_.body_length());
-				std::cout << " - " << now_str() << "\n";
+				/*std::cout << " - " << MyPID << "\n";
 				do_read_header();
 
 				MsgToSend = "HejHejHej";
@@ -174,7 +194,7 @@ private:
 				msg.encode_header();
 
 				std::this_thread::sleep_for(std::chrono::milliseconds(50));
-				write(msg);
+				write(msg);*/
 			}
 			else
 			{
@@ -218,7 +238,7 @@ int main(int argc, char* argv[])
 {
 	try
 	{
-		/*std::cout << "Server IP:\n";
+		std::cout << "Server IP:\n";
 		std::cin >> IP;
 
 		std::cout << "Server PORT:\n";
@@ -247,7 +267,7 @@ int main(int argc, char* argv[])
 		msg.body_length(std::strlen(line));
 		std::memcpy(msg.body(), line, msg.body_length());
 		msg.encode_header();
-		c.write(msg);*/
+		c.write(msg);
 
 		/*****************************************************************************************************************
 		*********************************************************GLUT*****************************************************
@@ -270,7 +290,8 @@ int main(int argc, char* argv[])
 		glDepthRange(0.0, 1.0);
 
 		//glutFullScreen();
-		Tex = texture::loadBMP("crate.bmp");
+		WallTex = texture::loadBMP("stone.bmp");
+		CrateTex = texture::loadBMP("crate.bmp");
 		BombTex = texture::loadBMP("bomb.bmp");
 		FireTex = texture::loadBMP("fire.bmp");
 		//Register callbacks

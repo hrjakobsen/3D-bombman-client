@@ -17,7 +17,8 @@
 #include "texture.h"
 #include "bomb.h"
 
-texture *Tex;
+texture *CrateTex;
+texture *WallTex;
 texture *BombTex;
 texture *FireTex;
 GLUquadric *Bomb;
@@ -42,19 +43,19 @@ int WorldDepth = 100;
 const int WorldSize = 15;
 short World[WorldSize][WorldSize] = {
 	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+	{ 1, 0, 0, 0, 2, 0, 2, 0, 2, 0, 2, 0, 0, 0, 1 },
+	{ 1, 0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 0, 1 },
+	{ 1, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 1 },
+	{ 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1 },
+	{ 1, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 1 },
+	{ 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1 },
+	{ 1, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 1 },
+	{ 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1 },
+	{ 1, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 1 },
+	{ 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1 },
+	{ 1, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 1 },
+	{ 1, 0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 0, 1 },
+	{ 1, 0, 0, 0, 2, 0, 2, 0, 2, 0, 2, 0, 0, 0, 1 },
 	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
 	};
 BombJB BombWorld[WorldSize][WorldSize];
@@ -73,15 +74,18 @@ float BodyRadius = 0.2; // For colision detection if set to 0.2 a minimum of 0.4
 //Propeties
 float MovementSpeed = 2.5; // m/s
 int PlayerPower = 2;
+int MaksBombs = 2;
 
 //CAMERA
-vectorJB CameraAngle = { 0, 0, 0 };
+vectorJB CameraAngle = { -45, 0, 0 };
 float CameraSensitivity = 40;
 
 //CONTROLS
 bool KEYS[256];
 
-
+//BOMBS
+float BombExplodeAge = 5;
+float FireTime = 2;
 
 
 
@@ -95,7 +99,7 @@ void UpdateBombs(float Diff) {
 			BombID ++;
 			if (BombWorld[i][ii].armed) {
 				BombWorld[i][ii].age += Diff;
-				if (BombWorld[i][ii].age > 5 && !BombWorld[i][ii].FireDrawen) {
+				if (BombWorld[i][ii].age > BombExplodeAge && !BombWorld[i][ii].FireDrawen) {
 					BombWorld[i][ii].FireDrawen = true;
 					World[i][ii] = BLOCK_CFIRE;
 					BombFireWorld[i][ii] = BombID;
@@ -105,8 +109,12 @@ void UpdateBombs(float Diff) {
 						if ( World[Ni][Nii] == BLOCK_WALL) {
 							break;
 						}
+						int OldBlock = World[Ni][Nii];
 						World[Ni][Nii] = BLOCK_XFIRE;
 						BombFireWorld[Ni][Nii] = BombID;
+						if (OldBlock == BLOCK_CRATE) {
+							break;
+						}
 					}
 					for (int f = 1; f <= BombWorld[i][ii].power; f++) {
 						int Ni = i - f;
@@ -114,8 +122,12 @@ void UpdateBombs(float Diff) {
 						if (World[Ni][Nii] == BLOCK_WALL) {
 							break;
 						}
+						int OldBlock = World[Ni][Nii];
 						World[Ni][Nii] = BLOCK_XFIRE;
 						BombFireWorld[Ni][Nii] = BombID;
+						if (OldBlock == BLOCK_CRATE) {
+							break;
+						}
 					}
 					for (int f = 1; f <= BombWorld[i][ii].power; f++) {
 						int Ni = i;
@@ -123,8 +135,12 @@ void UpdateBombs(float Diff) {
 						if (World[Ni][Nii] == BLOCK_WALL) {
 							break;
 						}
+						int OldBlock = World[Ni][Nii];
 						World[Ni][Nii] = BLOCK_ZFIRE;
 						BombFireWorld[Ni][Nii] = BombID;
+						if (OldBlock == BLOCK_CRATE) {
+							break;
+						}
 					}
 					for (int f = 1; f <= BombWorld[i][ii].power; f++) {
 						int Ni = i;
@@ -132,14 +148,22 @@ void UpdateBombs(float Diff) {
 						if (World[Ni][Nii] == BLOCK_WALL) {
 							break;
 						}
+						int OldBlock = World[Ni][Nii];
 						World[Ni][Nii] = BLOCK_ZFIRE;
 						BombFireWorld[Ni][Nii] = BombID;
+						if (OldBlock == BLOCK_CRATE) {
+							break;
+						}
 					}
-				} else if (BombWorld[i][ii].age > 10) {
+				} else if (BombWorld[i][ii].age > BombExplodeAge + FireTime) {
 					BombWorld[i][ii].armed = false;
 					BombWorld[i][ii].age = 0;
 					BombWorld[i][ii].FireDrawen = false;
 					BombWorld[i][ii].power = 0;
+					if (BombWorld[i][ii].WasItMeTherePlacd) {
+						MaksBombs++;
+					}
+					BombWorld[i][ii].WasItMeTherePlacd = false;;
 					for (int i = 0; i < WorldSize; i++) {
 						for (int ii = 0; ii < WorldSize; ii++) {
 							if (BombFireWorld[i][ii] == BombID) {
