@@ -274,6 +274,7 @@ int main(int argc, char* argv[])
 
 		//glutFullScreen();
 		Tex = texture::loadBMP("stone.bmp");
+		BombTex = texture::loadBMP("bomb.bmp");
 		//Register callbacks
 		glutDisplayFunc(display);
 		glutReshapeFunc(reshape);

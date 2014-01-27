@@ -18,6 +18,8 @@
 #include "bomb.h"
 
 texture *Tex;
+texture *BombTex;
+GLUquadric *Bomb;
 
 //GAME SETUP
 float FramesPerSecond = 60;
