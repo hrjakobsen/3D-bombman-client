@@ -159,6 +159,19 @@ private:
 		}
 		return ReturnS;
 	}
+	chat_message CTS(std::string str) {
+		std::string MsgToSend = str;
+		char line[chat_message::max_body_length + 1];
+		for (int i = 0; i < MsgToSend.length(); i++) {
+			line[i] = MsgToSend[i];
+		}
+		chat_message msg;
+		msg.body_length(MsgToSend.length());
+		std::memcpy(msg.body(), line, msg.body_length());
+		msg.encode_header();
+		return msg;
+	}
+	template <typename T> string tostr(const T& t) { ostringstream os; os << t; return os.str(); }
 	void do_read_body()
 	{
 		boost::asio::async_read(socket_,
@@ -167,22 +180,20 @@ private:
 		{
 			if (!ec)
 			{
-				cout << CTSS(read_msg_.body(), read_msg_.body_length()) << "\n";
+				cout <<  "Modtaget: " << CTSS(read_msg_.body(), read_msg_.body_length()) << "\n";
 				if (MyPID == "") {
 					MyPID = read_msg_.body()[0];
 					MyPID += read_msg_.body()[1];
-				} else if (Started) {
-
-				} else {
-					string Test = CTSS(read_msg_.body(), read_msg_.body_length());
-					if (CTSS(read_msg_.body(), read_msg_.body_length()) == "Start") {
-						Started = true;
-						cout << "Start\n";
-					}
 				}
+
+				std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+				write(CTS(MyPID + ";" + tostr(BodyPosition.x) + ";" + tostr(BodyPosition.z)));
+				cout << "Sendt: " << MyPID + ";" + tostr(BodyPosition.x) + ";" + tostr(BodyPosition.z) << "\n";
+				do_read_header();
 				//std::cout.write(read_msg_.body(), read_msg_.body_length());
 				/*std::cout << " - " << MyPID << "\n";
-				do_read_header();
+				
 
 				MsgToSend = "HejHejHej";
 				char line[chat_message::max_body_length + 1];
@@ -257,18 +268,6 @@ int main(int argc, char* argv[])
 		auto endpoint_iterator = resolver.resolve({ IP, PORT });
 		chat_client c(io_service, endpoint_iterator);
 		std::thread t([&io_service](){ io_service.run(); });
-
-
-		MsgToSend = "HejHejHej";
-		char line[chat_message::max_body_length + 1];
-		for (int i = 0; i < MsgToSend.length(); i++) {
-		line[i] = MsgToSend[i];
-		}
-		chat_message msg;
-		msg.body_length(std::strlen(line));
-		std::memcpy(msg.body(), line, msg.body_length());
-		msg.encode_header();
-		c.write(msg);
 
 		/*****************************************************************************************************************
 		*********************************************************GLUT*****************************************************
