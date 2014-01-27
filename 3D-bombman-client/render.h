@@ -5,7 +5,6 @@ using namespace std;
 void DrawCubeWithText(float CubeSize, unsigned int TexID) {
 	glBindTexture(GL_TEXTURE_2D, TexID);
 	glBegin(GL_TRIANGLE_FAN);
-	glColor3f(1, 1, 1);
 	glTexCoord2f(CubeSize / 2, CubeSize / 2);
 	glVertex3f(CubeSize / 2, CubeSize / 2, CubeSize / 2);
 	glTexCoord2f(-CubeSize / 2, CubeSize / 2);
@@ -16,7 +15,6 @@ void DrawCubeWithText(float CubeSize, unsigned int TexID) {
 	glVertex3f(CubeSize / 2, CubeSize / 2, -CubeSize / 2);
 	glEnd();
 	glBegin(GL_TRIANGLE_FAN);
-	glColor3f(1, 1, 1);
 	glTexCoord2f(CubeSize / 2, CubeSize / 2);
 	glVertex3f(CubeSize / 2, CubeSize / 2, CubeSize / 2);
 	glTexCoord2f(-CubeSize / 2, CubeSize / 2);
@@ -27,7 +25,6 @@ void DrawCubeWithText(float CubeSize, unsigned int TexID) {
 	glVertex3f(CubeSize / 2, -CubeSize / 2, CubeSize / 2);
 	glEnd();
 	glBegin(GL_TRIANGLE_FAN);
-	glColor3f(1, 1, 1);
 	glTexCoord2f(CubeSize / 2, CubeSize / 2);
 	glVertex3f(CubeSize / 2, CubeSize / 2, CubeSize / 2);
 	glTexCoord2f(-CubeSize / 2, CubeSize / 2);
@@ -38,7 +35,6 @@ void DrawCubeWithText(float CubeSize, unsigned int TexID) {
 	glVertex3f(CubeSize / 2, CubeSize / 2, -CubeSize / 2);
 	glEnd();
 	glBegin(GL_TRIANGLE_FAN);
-	glColor3f(1, 1, 1);
 	glTexCoord2f(CubeSize / 2, CubeSize / 2);
 	glVertex3f(CubeSize / 2, -CubeSize / 2, CubeSize / 2);
 	glTexCoord2f(-CubeSize / 2, CubeSize / 2);
@@ -49,7 +45,6 @@ void DrawCubeWithText(float CubeSize, unsigned int TexID) {
 	glVertex3f(CubeSize / 2, -CubeSize / 2, -CubeSize / 2);
 	glEnd();
 	glBegin(GL_TRIANGLE_FAN);
-	glColor3f(1, 1, 1);
 	glTexCoord2f(CubeSize / 2, CubeSize / 2);
 	glVertex3f(CubeSize / 2, CubeSize / 2, -CubeSize / 2);
 	glTexCoord2f(-CubeSize / 2, CubeSize / 2);
@@ -60,7 +55,6 @@ void DrawCubeWithText(float CubeSize, unsigned int TexID) {
 	glVertex3f(CubeSize / 2, -CubeSize / 2, -CubeSize / 2);
 	glEnd();
 	glBegin(GL_TRIANGLE_FAN);
-	glColor3f(1, 1, 1);
 	glTexCoord2f(CubeSize / 2, CubeSize / 2);
 	glVertex3f(-CubeSize / 2, CubeSize / 2, CubeSize / 2);
 	glTexCoord2f(-CubeSize / 2, CubeSize / 2);
@@ -105,14 +99,18 @@ void GenerateWorld(){
 
 	glTranslatef(1, 0, 0);
 	glTranslatef(WorldSize / 2, -(WorldSize / 2), WorldSize / 2);
+	glColor3f(1, 1 - LostLifeTimer / LostLifeTimerMaks, 1 - LostLifeTimer / LostLifeTimerMaks);
 	glutSolidCube(WorldSize);
+	glColor3f(1, 1, 1);
 	glTranslatef(-(WorldSize / 2), WorldSize / 2, -(WorldSize / 2));
 	glTranslatef(0, 1, 0);
 
 	for (int i = 0; i < 3; i++) {
-		glTranslatef(OtherPos[i].x - 0.5, 0, OtherPos[i].z - 0.5);
-		DrawCubeWithText(0.25, WallTex->textureID);
-		glTranslatef(-OtherPos[i].x + 0.5, 0, -OtherPos[i].z + 0.5);
+		if (OtherLifes[i] > 0) {
+			glTranslatef(OtherPos[i].x - 0.5, 0, OtherPos[i].z - 0.5);
+			DrawCubeWithText(0.25, CrateTex->textureID);
+			glTranslatef(-OtherPos[i].x + 0.5, 0, -OtherPos[i].z + 0.5);
+		}
 	}
 
 	for (int x = 0; x < WorldSize; x++) {
@@ -128,10 +126,14 @@ void GenerateWorld(){
 				glRotatef(90, -1, 0, 0);
 			}
 			if ((World[z][x] == BLOCK_WALL)) {
+				glColor3f(1, 1 - LostLifeTimer / LostLifeTimerMaks, 1 - LostLifeTimer / LostLifeTimerMaks);
 				DrawCubeWithText(1, WallTex->textureID);
+				glColor3f(1, 1, 1);
 			}
 			if ((World[z][x] == BLOCK_CRATE)) {
+				glColor3f(1, 1 - LostLifeTimer / LostLifeTimerMaks, 1 - LostLifeTimer / LostLifeTimerMaks);
 				DrawCubeWithText(1, CrateTex->textureID);
+				glColor3f(1, 1, 1);
 			}
 			////////////////////////////////////////////////////BOMB FIRE //////////////////////////////////////////////
 			glTranslatef(0, -0.25, 0);
@@ -187,10 +189,14 @@ void DrawCross() {
 
 void display(void) {
 	//Reset
-
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	glLoadIdentity();
 	DrawCross();
+	if (LostLifeTimer > 0) {
+		glColor4f(1, 0, 0, ((float)LostLifeTimer / LostLifeTimerMaks));
+		glutSolidSphere(20, 100, 100);
+		glColor3f(1, 1, 1);
+	}
 	
 
 	glRotatef(CameraAngle.y, 1, 0, 0);
@@ -230,7 +236,7 @@ void reshape(int w, int h){
 	// Set the viewport to be the entire window
 	glViewport(0, 0, w, h);
 	// Set the correct perspective.
-	gluPerspective(45, ratio, 0.01, 50);
+	gluPerspective(45, ratio, 0.01, 100);
 	// Get Back to the Modelview
 	glMatrixMode(GL_MODELVIEW);
 	display();

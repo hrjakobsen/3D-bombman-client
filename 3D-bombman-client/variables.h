@@ -77,6 +77,7 @@ int PlayerPower = 2;
 int MaksBombs = 2;
 int LifesBack = 3;
 float LostLifeTimer = 0;
+float LostLifeTimerMaks = 2.5;
 bool InFire = false;
 
 //CAMERA
@@ -92,7 +93,10 @@ float FireTime = 2;
 
 //SERVER DATA
 vectorJB OtherPos[3];
+int OtherLifes[3] = { 3, 3, 3 };
 bool PlaceNextTime = false;
+bool LoseLifeNextTime = false;
+bool IsAlive = true;
 
 
 

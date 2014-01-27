@@ -255,6 +255,17 @@ private:
 								BombWorld[(int)PosXX][(int)PosZZ].WasItMeWhoPlaced = Me;
 								i++;
 							}
+							if (Data3[i + 3] == "L") {
+								if (Me) {
+									LostLifeTimer = LostLifeTimerMaks;
+									LifesBack--;
+									if (LifesBack <= 0) {
+										IsAlive = false;
+									}
+								} else {
+									OtherLifes[Counter] --;
+								}
+							}
 						}
 						cout << OtherPos[Counter].x << " - " << OtherPos[Counter].z << "\n";
 					}
@@ -268,6 +279,10 @@ private:
 						SendText += ";B;" + tostr(PlayerPower);
 						MaksBombs--;
 					}
+				}
+				if (LoseLifeNextTime) {
+					SendText += ";L";
+					LoseLifeNextTime = false;
 				}
 				write(CTS(SendText));
 				//cout << "Sendt: " << MyPID + ";" + tostr(BodyPosition.x) + ";" + tostr(BodyPosition.z) << "\n";
@@ -369,6 +384,8 @@ int main(int argc, char* argv[])
 		glDepthMask(GL_TRUE);
 		glDepthFunc(GL_LEQUAL);
 		glDepthRange(0.0, 1.0);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 		//glutFullScreen();
 		WallTex = texture::loadBMP("stone.bmp");
