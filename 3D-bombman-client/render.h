@@ -109,6 +109,12 @@ void GenerateWorld(){
 	glTranslatef(-(WorldSize / 2), WorldSize / 2, -(WorldSize / 2));
 	glTranslatef(0, 1, 0);
 
+	for (int i = 0; i < 3; i++) {
+		glTranslatef(OtherPos[i].x - 0.5, 0, OtherPos[i].z - 0.5);
+		DrawCubeWithText(0.25, WallTex->textureID);
+		glTranslatef(-OtherPos[i].x + 0.5, 0, -OtherPos[i].z + 0.5);
+	}
+
 	for (int x = 0; x < WorldSize; x++) {
 		for (int z = 0; z < WorldSize; z++) {
 			if (BombWorld[z][x].armed && BombWorld[z][x].age < BombExplodeAge) {
@@ -185,9 +191,10 @@ void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	glLoadIdentity();
 	DrawCross();
+	
+
 	glRotatef(CameraAngle.y, 1, 0, 0);
 	glRotatef(CameraAngle.x, 0, 1, 0);
-
 	if (FirstPersonView) {
 		gluLookAt(0, 0, -1, 0, 0, 0, 0, 1, 0);
 	}
@@ -196,6 +203,7 @@ void display(void) {
 	}
 	glTranslatef(-0.5, -BodyHeight*.95 - 0.5, -0.5);
 	glTranslatef(-BodyPosition.x, -BodyPosition.y, -BodyPosition.z);
+
 	GenerateWorld();
 
 	//texture *Tex = texture::loadBMP("stone.bmp");

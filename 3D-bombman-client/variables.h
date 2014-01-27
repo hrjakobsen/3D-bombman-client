@@ -87,7 +87,8 @@ bool KEYS[256];
 float BombExplodeAge = 5;
 float FireTime = 2;
 
-
+//SERVER DATA
+vectorJB OtherPos[3];
 
 
 

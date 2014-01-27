@@ -94,6 +94,52 @@ std::string now_str()
 class chat_client
 {
 public:
+	string Replacer(string Text, string WhatsToRemove, string WhatsToPutIn) {
+		string ReturnString;
+		for (int i = 0; i <= Text.length() - 1; i++) {
+			if (Text.substr(i, WhatsToRemove.length()) == WhatsToRemove) {
+				if (WhatsToPutIn != "") {
+					ReturnString = ReturnString + WhatsToPutIn;
+					i += (int)WhatsToRemove.length() - 1;
+				}
+			}
+			else {
+				ReturnString = ReturnString + Text.substr(i, 1);
+			}
+		}
+
+		return ReturnString;
+	}
+
+	int StringCount(string Text, string WhatToCount) {
+		if (Text.length() < WhatToCount.length()) {
+			return 0;
+		}
+		int Count = 0;
+		for (int i = 0; i < Text.length() - (WhatToCount.length() - 1); i++) {
+			if (Text.substr(i, WhatToCount.length()) == WhatToCount) {
+				Count++;
+			}
+		}
+		return Count;
+	}
+
+	string* Splitter(string Text, string StringToSplitAt) {
+		int Length = StringCount(Text, StringToSplitAt);
+		string *NewArray = new string[Length + 1];
+
+		int Counter = 0;
+		string RemaningText = Text;
+		while (StringCount(RemaningText, StringToSplitAt) != 0) {
+			NewArray[Counter] = RemaningText.substr(0, RemaningText.find(StringToSplitAt));
+			RemaningText = RemaningText.substr(RemaningText.find(StringToSplitAt) + StringToSplitAt.length(), RemaningText.length() - 1);
+			Counter++;
+		}
+		NewArray[Counter] = RemaningText;
+
+		string* Pointer = NewArray;
+		return Pointer;
+	}
 	chat_client(boost::asio::io_service& io_service,
 		tcp::resolver::iterator endpoint_iterator)
 		: io_service_(io_service),
@@ -180,16 +226,29 @@ private:
 		{
 			if (!ec)
 			{
-				cout <<  "Modtaget: " << CTSS(read_msg_.body(), read_msg_.body_length()) << "\n";
+				string Data = CTSS(read_msg_.body(), read_msg_.body_length());
+				//cout <<  "Modtaget: " << Data << "\n";
 				if (MyPID == "") {
 					MyPID = read_msg_.body()[0];
 					MyPID += read_msg_.body()[1];
 				}
 
+				string *Data2 = Splitter(Data, ";;;");
+				int Counter = 0;
+				for (int i = 0; i <= StringCount(Data, ";;;"); i++) {
+					string *Data3 = Splitter(Data2[i], ";");
+					if (Data3[0] != MyPID) {
+						OtherPos[Counter].x = atof(Data3[1].c_str());
+						OtherPos[Counter].z = atof(Data3[2].c_str());
+						cout << OtherPos[Counter].x << " - " << OtherPos[Counter].z << "\n";
+						Counter++;
+					}
+				}
+
 				std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
 				write(CTS(MyPID + ";" + tostr(BodyPosition.x) + ";" + tostr(BodyPosition.z)));
-				cout << "Sendt: " << MyPID + ";" + tostr(BodyPosition.x) + ";" + tostr(BodyPosition.z) << "\n";
+				//cout << "Sendt: " << MyPID + ";" + tostr(BodyPosition.x) + ";" + tostr(BodyPosition.z) << "\n";
 				do_read_header();
 				//std::cout.write(read_msg_.body(), read_msg_.body_length());
 				/*std::cout << " - " << MyPID << "\n";
