@@ -240,24 +240,38 @@ private:
 					if (Data3[0] != MyPID) {
 						OtherPos[Counter].x = atof(Data3[1].c_str());
 						OtherPos[Counter].z = atof(Data3[2].c_str());
-						cout << OtherPos[Counter].x << " - " << OtherPos[Counter].z << "\n";
 						Counter++;
 					}
+					for (int i = 0; i < StringCount(Data2[i], ";") - 2; i++) {
+						if (Data3[i + 3] == "B") {
+							BombWorld[(int)BodyPosition.x][(int)BodyPosition.z].armed = true;
+							BombWorld[(int)BodyPosition.x][(int)BodyPosition.z].power = PlayerPower;
+							BombWorld[(int)BodyPosition.x][(int)BodyPosition.z].WasItMeTherePlacd = true;
+						}
+					}
+					cout << OtherPos[Counter].x << " - " << OtherPos[Counter].z << "\n";
 				}
 
 				std::this_thread::sleep_for(std::chrono::milliseconds(100));
+				string SendText = (MyPID + ";" + tostr(BodyPosition.x) + ";" + tostr(BodyPosition.z));
+				if (PlaceNextTime) {
+					PlaceNextTime = false;
+					if (!BombWorld[(int)BodyPosition.x][(int)BodyPosition.z].armed && MaksBombs != 0) {
 
-				write(CTS(MyPID + ";" + tostr(BodyPosition.x) + ";" + tostr(BodyPosition.z)));
+						SendText += ";B";
+					}
+				}
+				write(CTS(SendText));
 				//cout << "Sendt: " << MyPID + ";" + tostr(BodyPosition.x) + ";" + tostr(BodyPosition.z) << "\n";
 				do_read_header();
 				//std::cout.write(read_msg_.body(), read_msg_.body_length());
 				/*std::cout << " - " << MyPID << "\n";
-				
+
 
 				MsgToSend = "HejHejHej";
 				char line[chat_message::max_body_length + 1];
 				for (int i = 0; i < MsgToSend.length(); i++) {
-					line[i] = MsgToSend[i];
+				line[i] = MsgToSend[i];
 				}
 				chat_message msg;
 				msg.body_length(std::strlen(line));
@@ -317,8 +331,8 @@ int main(int argc, char* argv[])
 
 		if (argc != 3)
 		{
-		//std::cerr << "Usage: chat_client <host> <port>\n";
-		//return 1;
+			//std::cerr << "Usage: chat_client <host> <port>\n";
+			//return 1;
 		}
 
 		boost::asio::io_service io_service;
@@ -362,13 +376,13 @@ int main(int argc, char* argv[])
 		glutKeyboardFunc(KeyBoardCallBackDown);
 		glutKeyboardUpFunc(KeyBoardCallBackUp);
 
-		
+
 
 		glutMainLoop();
 		/*****************************************************************************************************************
 		*************************************************GLUT FINISHED****************************************************
 		*****************************************************************************************************************/
-		
+
 	}
 	catch (std::exception& e)
 	{
@@ -381,11 +395,12 @@ int main(int argc, char* argv[])
 void StartAndSend() {
 
 	try {
-		
 
-		
 
-	} catch (std::exception& e) {
+
+
+	}
+	catch (std::exception& e) {
 		std::cerr << "Exception: " << e.what() << "\n";
 	}
 }

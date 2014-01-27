@@ -101,11 +101,6 @@ void KeyBoardUpdate(float Diff) {
 		BodyPosition.x = OldPos.x;
 	}
 	if (KEYS[' ']) {
-		if (!BombWorld[(int)BodyPosition.x][(int)BodyPosition.z].armed && MaksBombs != 0) {
-			BombWorld[(int)BodyPosition.x][(int)BodyPosition.z].armed = true;
-			BombWorld[(int)BodyPosition.x][(int)BodyPosition.z].power = PlayerPower;
-			BombWorld[(int)BodyPosition.x][(int)BodyPosition.z].WasItMeTherePlacd = true;
-			MaksBombs--;
-		}
+		PlaceNextTime = true;
 	}
 }

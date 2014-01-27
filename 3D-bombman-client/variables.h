@@ -89,6 +89,7 @@ float FireTime = 2;
 
 //SERVER DATA
 vectorJB OtherPos[3];
+bool PlaceNextTime = false;
 
 
 
