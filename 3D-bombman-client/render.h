@@ -1,6 +1,7 @@
 using namespace std;
 #include "controls.h"
 
+
 void DrawCubeWithText(float CubeSize, unsigned int TexID) {
 	glBindTexture(GL_TEXTURE_2D, TexID);
 	glBegin(GL_TRIANGLE_FAN);
@@ -111,13 +112,14 @@ void GenerateWorld(){
 	for (int x = 0; x < WorldSize; x++) {
 		for (int z = 0; z < WorldSize; z++) {
 			if (BombWorld[z][x].armed && BombWorld[z][x].age < 5) {
-				glColor3f(1, 0, 0);
 				glRotatef(90, 1, 0, 0);
-				glRotatef(BombWorld[z][x].age * BombWorld[z][x].age * BombWorld[z][x].age * BombWorld[z][x].age, 0, 0, 1);
-				glutWireSphere((BombWorld[z][x].age / 10), 20, 20);
-				glRotatef(BombWorld[z][x].age * BombWorld[z][x].age * BombWorld[z][x].age * BombWorld[z][x].age, 0, 0, -1);
+				glRotatef(BombWorld[z][x].age * BombWorld[z][x].age * BombWorld[z][x].age * BombWorld[z][x].age*BombWorld[z][x].age, 0, 0, 1);
+				Bomb = gluNewQuadric();
+				gluQuadricTexture(Bomb, GL_TRUE);
+				glBindTexture(GL_TEXTURE_2D, BombTex->textureID);
+				gluSphere(Bomb, BombWorld[z][x].age/10, 36, 72);
+				glRotatef(BombWorld[z][x].age * BombWorld[z][x].age * BombWorld[z][x].age * BombWorld[z][x].age*BombWorld[z][x].age, 0, 0, -1);
 				glRotatef(90, -1, 0, 0);
-				glColor3f(1, 1, 1);
 			}
 			if ((World[z][x] == BLOCK_WALL)) {
 				DrawCubeWithText(1, Tex->textureID);
@@ -194,13 +196,9 @@ void display(void) {
 	GenerateWorld();
 
 	//texture *Tex = texture::loadBMP("stone.bmp");
-	Bomb = gluNewQuadric();
-	gluQuadricTexture(Bomb, GL_TRUE);
-
-	glBindTexture(GL_TEXTURE_2D, BombTex->textureID);
-	glTranslatef(3, 1, -5);
-	gluSphere(Bomb, 0.9, 36, 72);
-	glTranslatef(-3, -1, 5);
+	DrawCubeWithText(1, Tex->textureID);
+	
+	
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glutSwapBuffers();
