@@ -100,4 +100,10 @@ void KeyBoardUpdate(float Diff) {
 	if (SolidBlock(World[(int)BodyPosition.x][(int)(OldPos.z - BodyRadius)])) {
 		BodyPosition.x = OldPos.x;
 	}
+	if (KEYS[' ']) {
+		if (!BombWorld[(int)BodyPosition.x][(int)BodyPosition.z].armed) {
+			BombWorld[(int)BodyPosition.x][(int)BodyPosition.z].armed = true;
+			BombWorld[(int)BodyPosition.x][(int)BodyPosition.z].power = PlayerPower;
+		}
+	}
 }

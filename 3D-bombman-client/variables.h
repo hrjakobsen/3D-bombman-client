@@ -71,6 +71,7 @@ float BodyRadius = 0.2; // For colision detection if set to 0.2 a minimum of 0.4
 
 //Propeties
 float MovementSpeed = 2.5; // m/s
+int PlayerPower = 2;
 
 //CAMERA
 vectorJB CameraAngle = { 0, 0, 0 };
@@ -135,6 +136,8 @@ void UpdateBombs(float Diff) {
 					}
 				} else if (BombWorld[i][ii].age > 10) {
 					BombWorld[i][ii].armed = false;
+					BombWorld[i][ii].age = 0;
+					BombWorld[i][ii].FireDrawen = false;
 					for (int i = 0; i < WorldSize; i++) {
 						for (int ii = 0; ii < WorldSize; ii++) {
 							if (BombFireWorld[i][ii] == BombID) {
