@@ -238,19 +238,22 @@ private:
 				for (int i = 0; i <= StringCount(Data, ";;;"); i++) {
 					if (StringCount(Data2[i], ";") >= 2) {
 						string *Data3 = Splitter(Data2[i], ";");
+						bool Me = true;
 						float PosXX = atof(Data3[1].c_str());
 						float PosZZ = atof(Data3[2].c_str());
 						if (Data3[0] != MyPID) {
 							OtherPos[Counter].x = atof(Data3[1].c_str());
 							OtherPos[Counter].z = atof(Data3[2].c_str());
+							Me = false;
 							Counter++;
 						}
 						int Oi = i;
 						for (int i = 0; i < StringCount(Data2[Oi], ";") - 2; i++) {
 							if (Data3[i + 3] == "B") {
 								BombWorld[(int)PosXX][(int)PosZZ].armed = true;
-								BombWorld[(int)PosXX][(int)PosZZ].power = PlayerPower;
-								BombWorld[(int)PosXX][(int)PosZZ].WasItMeWhoPlaced = true;
+								BombWorld[(int)PosXX][(int)PosZZ].power = atof(Data3[i + 4].c_str());
+								BombWorld[(int)PosXX][(int)PosZZ].WasItMeWhoPlaced = Me;
+								i++;
 							}
 						}
 						cout << OtherPos[Counter].x << " - " << OtherPos[Counter].z << "\n";
@@ -262,8 +265,8 @@ private:
 				if (PlaceNextTime) {
 					PlaceNextTime = false;
 					if (!BombWorld[(int)BodyPosition.x][(int)BodyPosition.z].armed && MaksBombs != 0) {
-
-						SendText += ";B";
+						SendText += ";B;" + tostr(PlayerPower);
+						MaksBombs--;
 					}
 				}
 				write(CTS(SendText));
