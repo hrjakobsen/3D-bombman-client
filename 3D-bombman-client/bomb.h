@@ -4,5 +4,5 @@ struct BombJB
 	float age;
 	int power;
 	bool FireDrawen;
-	bool WasItMeTherePlacd;
+	bool WasItMeWhoPlaced;
 };

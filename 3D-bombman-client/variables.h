@@ -162,10 +162,10 @@ void UpdateBombs(float Diff) {
 					BombWorld[i][ii].age = 0;
 					BombWorld[i][ii].FireDrawen = false;
 					BombWorld[i][ii].power = 0;
-					if (BombWorld[i][ii].WasItMeTherePlacd) {
+					if (BombWorld[i][ii].WasItMeWhoPlaced) {
 						MaksBombs++;
 					}
-					BombWorld[i][ii].WasItMeTherePlacd = false;;
+					BombWorld[i][ii].WasItMeWhoPlaced = false;;
 					for (int i = 0; i < WorldSize; i++) {
 						for (int ii = 0; ii < WorldSize; ii++) {
 							if (BombFireWorld[i][ii] == BombID) {
