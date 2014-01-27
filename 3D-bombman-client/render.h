@@ -1,7 +1,6 @@
 using namespace std;
 #include "controls.h"
 
-
 void DrawCubeWithText(float CubeSize, unsigned int TexID) {
 	glBindTexture(GL_TEXTURE_2D, TexID);
 	glBegin(GL_TRIANGLE_FAN);
@@ -111,10 +110,46 @@ void GenerateWorld(){
 
 	for (int x = 0; x < WorldSize; x++) {
 		for (int z = 0; z < WorldSize; z++) {
-			if (!(World[z][x] == BLOCK_AIR)) {
-				//glutWireCube(1);
+			if (BombWorld[z][x].armed && BombWorld[z][x].age < 5) {
+				glColor3f(1, 0, 0);
+				glRotatef(90, 1, 0, 0);
+				glutWireSphere((BombWorld[z][x].age / 10), 20, 20);
+				glRotatef(90, -1, 0, 0);
+				glColor3f(1, 1, 1);
+			}
+			if ((World[z][x] == BLOCK_WALL)) {
 				DrawCubeWithText(1, Tex->textureID);
 			}
+			////////////////////////////////////////////////////BOMB FIRE //////////////////////////////////////////////
+			glTranslatef(0, -0.25, 0);
+			if ((World[z][x] == BLOCK_XFIRE)) {
+				glTranslatef(0.25, 0, 0);
+				DrawCubeWithText(0.5, Tex->textureID);
+				glTranslatef(-0.5, 0, 0);
+				DrawCubeWithText(0.5, Tex->textureID);
+				glTranslatef(0.25, 0, 0);
+			}
+			if ((World[z][x] == BLOCK_ZFIRE)) {
+				glTranslatef(0, 0, 0.25);
+				DrawCubeWithText(0.5, Tex->textureID);
+				glTranslatef(0, 0, -0.5);
+				DrawCubeWithText(0.5, Tex->textureID);
+				glTranslatef(0, 0, 0.25);
+			}
+			if ((World[z][x] == BLOCK_CFIRE)) {
+				glTranslatef(0, 0, 0.25);
+				DrawCubeWithText(0.5, Tex->textureID);
+				glTranslatef(0, 0, -0.5);
+				DrawCubeWithText(0.5, Tex->textureID);
+				glTranslatef(0, 0, 0.25);
+				glTranslatef(0.25, 0, 0);
+				DrawCubeWithText(0.5, Tex->textureID);
+				glTranslatef(-0.5, 0, 0);
+				DrawCubeWithText(0.5, Tex->textureID);
+				glTranslatef(0.25, 0, 0);
+			}
+			glTranslatef(0, 0.25, 0);
+			////////////////////////////////////////////BOMB FIRE ////////////////////////////////////////////////////////////
 			glTranslatef(1, 0, 0);
 		}
 		glTranslatef(WorldSize*-1, 0, 0);

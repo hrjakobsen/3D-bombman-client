@@ -70,34 +70,34 @@ void KeyBoardUpdate(float Diff) {
 		glutDestroyWindow(glutGetWindow());
 		exit(0);
 	}
-	if (World[(int)OldPos.x][(int)BodyPosition.z] != BLOCK_AIR) {
+	if (SolidBlock(World[(int)OldPos.x][(int)BodyPosition.z])) {
 		BodyPosition.z = OldPos.z;
 	}
-	if (World[(int)BodyPosition.x][(int)OldPos.z] != BLOCK_AIR) {
+	if (SolidBlock(World[(int)BodyPosition.x][(int)OldPos.z])) {
 		BodyPosition.x = OldPos.x;
 	}
-	if (World[(int)(OldPos.x + BodyRadius)][(int)BodyPosition.z] != BLOCK_AIR) {
+	if (SolidBlock(World[(int)(OldPos.x + BodyRadius)][(int)BodyPosition.z])) {
 		BodyPosition.z = OldPos.z;
 	}
-	if (World[(int)(BodyPosition.x + BodyRadius)][(int)OldPos.z] != BLOCK_AIR) {
+	if (SolidBlock(World[(int)(BodyPosition.x + BodyRadius)][(int)OldPos.z])) {
 		BodyPosition.x = OldPos.x;
 	}
-	if (World[(int)OldPos.x][(int)(BodyPosition.z + BodyRadius)] != BLOCK_AIR) {
+	if (SolidBlock(World[(int)OldPos.x][(int)(BodyPosition.z + BodyRadius)])) {
 		BodyPosition.z = OldPos.z;
 	}
-	if (World[(int)BodyPosition.x][(int)(OldPos.z + BodyRadius)] != BLOCK_AIR) {
+	if (SolidBlock(World[(int)BodyPosition.x][(int)(OldPos.z + BodyRadius)])) {
 		BodyPosition.x = OldPos.x;
 	}
-	if (World[(int)(OldPos.x - BodyRadius)][(int)BodyPosition.z] != BLOCK_AIR) {
+	if (SolidBlock(World[(int)(OldPos.x - BodyRadius)][(int)BodyPosition.z])) {
 		BodyPosition.z = OldPos.z;
 	}
-	if (World[(int)(BodyPosition.x - BodyRadius)][(int)OldPos.z] != BLOCK_AIR) {
+	if (SolidBlock(World[(int)(BodyPosition.x - BodyRadius)][(int)OldPos.z])) {
 		BodyPosition.x = OldPos.x;
 	}
-	if (World[(int)OldPos.x][(int)(BodyPosition.z - BodyRadius)] != BLOCK_AIR) {
+	if (SolidBlock(World[(int)OldPos.x][(int)(BodyPosition.z - BodyRadius)])) {
 		BodyPosition.z = OldPos.z;
 	}
-	if (World[(int)BodyPosition.x][(int)(OldPos.z - BodyRadius)] != BLOCK_AIR) {
+	if (SolidBlock(World[(int)BodyPosition.x][(int)(OldPos.z - BodyRadius)])) {
 		BodyPosition.x = OldPos.x;
 	}
 }

@@ -7,6 +7,7 @@ void Gametimer() {
 	if (Diff > 1 / FramesPerSecond) {
 		LastGameTick = clock();
 		KeyBoardUpdate(Diff);
+		UpdateBombs(Diff);
 		display();
 		FramesCount++;
 	}

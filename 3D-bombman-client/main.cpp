@@ -269,6 +269,8 @@ int main(int argc, char* argv[])
 		glDepthFunc(GL_LEQUAL);
 		glDepthRange(0.0, 1.0);
 
+		BombWorld[5][5].armed = true;
+		BombWorld[5][5].power = 3;
 
 		//glutFullScreen();
 		Tex = texture::loadBMP("stone.bmp");

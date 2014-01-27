@@ -15,6 +15,7 @@
 #include <chrono>
 #include "blocks.h"
 #include "texture.h"
+#include "bomb.h"
 
 texture *Tex;
 
@@ -53,6 +54,8 @@ short World[WorldSize][WorldSize] = {
 	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
 	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
 	};
+BombJB BombWorld[WorldSize][WorldSize];
+int BombFireWorld[WorldSize][WorldSize];
 
 //WINDOW
 int ScreenWidth;
@@ -74,3 +77,71 @@ float CameraSensitivity = 40;
 //CONTROLS
 bool KEYS[256];
 
+
+
+
+
+
+
+
+void UpdateBombs(float Diff) {
+	int BombID = 0;
+	for (int i = 0; i < WorldSize; i++) {
+		for (int ii = 0; ii < WorldSize; ii++) {
+			BombID ++;
+			if (BombWorld[i][ii].armed) {
+				BombWorld[i][ii].age += Diff;
+				if (BombWorld[i][ii].age > 5 && !BombWorld[1][ii].FireDrawen) {
+					BombWorld[1][ii].FireDrawen = true;
+					World[i][ii] = BLOCK_CFIRE;
+					BombFireWorld[i][ii] = BombID;
+					for (int f = 1; f <= BombWorld[i][ii].power; f++) {
+						int Ni = i + f;
+						int Nii = ii;
+						if (Ni < 0 || Nii < 0 || Ni >= WorldSize || Nii >= WorldSize || World[Ni][Nii] != BLOCK_AIR) {
+							break;
+						}
+						World[Ni][Nii] = BLOCK_XFIRE;
+						BombFireWorld[Ni][Nii] = BombID;
+					}
+					for (int f = 1; f <= BombWorld[i][ii].power; f++) {
+						int Ni = i - f;
+						int Nii = ii;
+						if (Ni < 0 || Nii < 0 || Ni >= WorldSize || Nii >= WorldSize || World[Ni][Nii] != BLOCK_AIR) {
+							break;
+						}
+						World[Ni][Nii] = BLOCK_XFIRE;
+						BombFireWorld[Ni][Nii] = BombID;
+					}
+					for (int f = 1; f <= BombWorld[i][ii].power; f++) {
+						int Ni = i;
+						int Nii = ii + f;
+						if (Ni < 0 || Nii < 0 || Ni >= WorldSize || Nii >= WorldSize || World[Ni][Nii] != BLOCK_AIR) {
+							break;
+						}
+						World[Ni][Nii] = BLOCK_ZFIRE;
+						BombFireWorld[Ni][Nii] = BombID;
+					}
+					for (int f = 1; f <= BombWorld[i][ii].power; f++) {
+						int Ni = i;
+						int Nii = ii - f;
+						if (Ni < 0 || Nii < 0 || Ni >= WorldSize || Nii >= WorldSize || World[Ni][Nii] != BLOCK_AIR) {
+							break;
+						}
+						World[Ni][Nii] = BLOCK_ZFIRE;
+						BombFireWorld[Ni][Nii] = BombID;
+					}
+				} else if (BombWorld[i][ii].age > 10) {
+					BombWorld[i][ii].armed = false;
+					for (int i = 0; i < WorldSize; i++) {
+						for (int ii = 0; ii < WorldSize; ii++) {
+							if (BombFireWorld[i][ii] == BombID) {
+								World[i][ii] = BLOCK_AIR;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
