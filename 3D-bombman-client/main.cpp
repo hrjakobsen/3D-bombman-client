@@ -167,13 +167,14 @@ private:
 		{
 			if (!ec)
 			{
+				cout << CTSS(read_msg_.body(), read_msg_.body_length()) << "\n";
 				if (MyPID == "") {
 					MyPID = read_msg_.body()[0];
 					MyPID += read_msg_.body()[1];
-				}
-				if (Started) {
+				} else if (Started) {
 
 				} else {
+					string Test = CTSS(read_msg_.body(), read_msg_.body_length());
 					if (CTSS(read_msg_.body(), read_msg_.body_length()) == "Start") {
 						Started = true;
 						cout << "Start\n";
