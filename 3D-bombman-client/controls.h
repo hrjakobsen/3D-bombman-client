@@ -42,6 +42,10 @@ void KeyBoardCallBackDown(unsigned char key, int x, int y) {
 }
 
 void KeyBoardUpdate(float Diff) {
+	if (KEYS[27]) { // ESC
+		glutDestroyWindow(glutGetWindow());
+		exit(0);
+	}
 	if (IsAlive) {
 		vectorJB OldPos = BodyPosition;
 		if (KEYS['w']) {
@@ -67,10 +71,6 @@ void KeyBoardUpdate(float Diff) {
 			movement = Times(movement, MovementSpeed);
 			movement = Times(movement, (Diff));
 			BodyPosition = Subtract(BodyPosition, movement);
-		}
-		if (KEYS[27]) { // ESC
-			glutDestroyWindow(glutGetWindow());
-			exit(0);
 		}
 		if (SolidBlock(World[(int)OldPos.x][(int)BodyPosition.z])) {
 			BodyPosition.z = OldPos.z;
