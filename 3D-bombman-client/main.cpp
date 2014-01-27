@@ -245,7 +245,8 @@ private:
 							OtherPos[Counter].z = atof(Data3[2].c_str());
 							Counter++;
 						}
-						for (int i = 0; i < StringCount(Data2[i], ";") - 2; i++) {
+						int Oi = i;
+						for (int i = 0; i < StringCount(Data2[Oi], ";") - 2; i++) {
 							if (Data3[i + 3] == "B") {
 								BombWorld[(int)PosXX][(int)PosZZ].armed = true;
 								BombWorld[(int)PosXX][(int)PosZZ].power = PlayerPower;
