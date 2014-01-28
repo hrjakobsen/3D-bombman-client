@@ -86,6 +86,7 @@ float CameraSensitivity = 40;
 
 //CONTROLS
 bool KEYS[256];
+bool ELast = false;
 
 //BOMBS
 float BombExplodeAge = 5;
@@ -120,6 +121,9 @@ void UpdateBombs(float Diff) {
 						}
 						int OldBlock = World[Ni][Nii];
 						World[Ni][Nii] = BLOCK_XFIRE;
+						if (BombWorld[Ni][Nii].armed) {
+							BombWorld[Ni][Nii].age = BombExplodeAge;
+						}
 						BombFireWorld[Ni][Nii] = BombID;
 						if (OldBlock == BLOCK_CRATE) {
 							break;
@@ -133,6 +137,9 @@ void UpdateBombs(float Diff) {
 						}
 						int OldBlock = World[Ni][Nii];
 						World[Ni][Nii] = BLOCK_XFIRE;
+						if (BombWorld[Ni][Nii].armed) {
+							BombWorld[Ni][Nii].age = BombExplodeAge;
+						}
 						BombFireWorld[Ni][Nii] = BombID;
 						if (OldBlock == BLOCK_CRATE) {
 							break;
@@ -146,6 +153,9 @@ void UpdateBombs(float Diff) {
 						}
 						int OldBlock = World[Ni][Nii];
 						World[Ni][Nii] = BLOCK_ZFIRE;
+						if (BombWorld[Ni][Nii].armed) {
+							BombWorld[Ni][Nii].age = BombExplodeAge;
+						}
 						BombFireWorld[Ni][Nii] = BombID;
 						if (OldBlock == BLOCK_CRATE) {
 							break;
@@ -159,6 +169,9 @@ void UpdateBombs(float Diff) {
 						}
 						int OldBlock = World[Ni][Nii];
 						World[Ni][Nii] = BLOCK_ZFIRE;
+						if (BombWorld[Ni][Nii].armed) {
+							BombWorld[Ni][Nii].age = BombExplodeAge;
+						}
 						BombFireWorld[Ni][Nii] = BombID;
 						if (OldBlock == BLOCK_CRATE) {
 							break;

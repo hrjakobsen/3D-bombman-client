@@ -28,14 +28,14 @@ void MouseMotion(int x, int y) {
 
 void KeyBoardCallBackUp(unsigned char key, int x, int y) {
 	KEYS[key] = false;
-	if (key == 'W' || key == 'A' || key == 'S' || key == 'D') {
+	if (key == 'W' || key == 'A' || key == 'S' || key == 'D' || key == 'E') {
 		KEYS[key + 32] = false;
 	}
 }
 
 void KeyBoardCallBackDown(unsigned char key, int x, int y) {
 	KEYS[key] = true;
-	if (key == 'W' || key == 'A' || key == 'S' || key == 'D') {
+	if (key == 'W' || key == 'A' || key == 'S' || key == 'D' || key == 'E') {
 		KEYS[key] = false;
 		KEYS[key + 32] = true;
 	}
@@ -71,6 +71,14 @@ void KeyBoardUpdate(float Diff) {
 			movement = Times(movement, MovementSpeed);
 			movement = Times(movement, (Diff));
 			BodyPosition = Subtract(BodyPosition, movement);
+		}
+		if (KEYS['e'] && !ELast) {
+			int CAX = (CameraAngle.x + 45) / 90;
+			CAX += 2;
+			CameraAngle.x = CAX * 90;
+			ELast = true;
+		} else if (!KEYS['e']) {
+			ELast = false;
 		}
 		if (SolidBlock(World[(int)OldPos.x][(int)BodyPosition.z])) {
 			BodyPosition.z = OldPos.z;

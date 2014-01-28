@@ -263,7 +263,7 @@ private:
 										IsAlive = false;
 									}
 								} else {
-									OtherLifes[Counter] --;
+									OtherLifes[Counter - 1] --;
 								}
 							}
 						}
