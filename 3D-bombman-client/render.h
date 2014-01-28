@@ -95,6 +95,14 @@ void CreateBaseLayer() {
 	glutWireCube(1);
 }
 
+float powF(float num, int numT) {
+	float N = num;
+	for (int i = 1; i < numT; i++) {
+		N *= num;
+	}
+	return N;
+}
+
 void GenerateWorld(){
 
 	glTranslatef(1, 0, 0);
@@ -117,12 +125,12 @@ void GenerateWorld(){
 		for (int z = 0; z < WorldSize; z++) {
 			if (BombWorld[z][x].armed && BombWorld[z][x].age < BombExplodeAge) {
 				glRotatef(90, 1, 0, 0);
-				glRotatef(BombWorld[z][x].age * BombWorld[z][x].age * BombWorld[z][x].age * BombWorld[z][x].age*BombWorld[z][x].age, 0, 0, 1);
+				glRotatef(powF(BombWorld[z][x].age, 6) , 0, 0, 1);
 				Bomb = gluNewQuadric();
 				gluQuadricTexture(Bomb, GL_TRUE);
 				glBindTexture(GL_TEXTURE_2D, BombTex->textureID);
-				gluSphere(Bomb, BombWorld[z][x].age/10, 36, 72);
-				glRotatef(BombWorld[z][x].age * BombWorld[z][x].age * BombWorld[z][x].age * BombWorld[z][x].age*BombWorld[z][x].age, 0, 0, -1);
+				gluSphere(Bomb, BombWorld[z][x].age/10*(5/BombExplodeAge), 36, 72);
+				glRotatef(powF(BombWorld[z][x].age, 6) , 0, 0, -1);
 				glRotatef(90, -1, 0, 0);
 			}
 			if ((World[z][x] == BLOCK_WALL)) {
