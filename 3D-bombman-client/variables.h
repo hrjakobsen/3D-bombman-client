@@ -89,7 +89,7 @@ bool KEYS[256];
 bool ELast = false;
 
 //BOMBS
-float BombExplodeAge = 5;
+float BombExplodeAge = 3;
 float FireTime = 2;
 
 //SERVER DATA
