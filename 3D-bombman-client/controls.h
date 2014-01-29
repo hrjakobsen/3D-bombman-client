@@ -115,9 +115,24 @@ void KeyBoardUpdate(float Diff) {
 				InFire = true;
 				LoseLifeNextTime = true;
 			}
-		}
-		else {
+		} else {
 			InFire = false;
+		}
+		if (World[(int)BodyPosition.x][(int)(BodyPosition.z)] == BLOCK_BONUS_LIFE) {
+			LifesBack++;
+			World[(int)BodyPosition.x][(int)(BodyPosition.z)] = BLOCK_AIR;
+		}
+		if (World[(int)BodyPosition.x][(int)(BodyPosition.z)] == BLOCK_BONUS_POWER) {
+			PlayerPower++;
+			World[(int)BodyPosition.x][(int)(BodyPosition.z)] = BLOCK_AIR;
+		}
+		if (World[(int)BodyPosition.x][(int)(BodyPosition.z)] == BLOCK_BONUS_SPEED) {
+			MovementSpeed += 0.5;
+			World[(int)BodyPosition.x][(int)(BodyPosition.z)] = BLOCK_AIR;
+		}
+		if (World[(int)BodyPosition.x][(int)(BodyPosition.z)] == BLOCK_BONUS_MOREBOMBS) {
+			MaksBombs ++;
+			World[(int)BodyPosition.x][(int)(BodyPosition.z)] = BLOCK_AIR;
 		}
 		if (KEYS[' ']) {
 			PlaceNextTime = true;

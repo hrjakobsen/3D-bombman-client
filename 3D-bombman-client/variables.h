@@ -21,6 +21,10 @@ texture *CrateTex;
 texture *WallTex;
 texture *BombTex;
 texture *FireTex;
+texture *BonusLifeTex;
+texture *BonusBombTex;
+texture *BonusSpeedTex;
+texture *BonusPowerTex;
 GLUquadric *Bomb;
 
 //GAME SETUP
@@ -98,6 +102,8 @@ int OtherLifes[3] = { 3, 3, 3 };
 bool PlaceNextTime = false;
 bool LoseLifeNextTime = false;
 bool IsAlive = true;
+int BoxOpps[250];
+int BoxOppsCounter = 0;
 
 
 
@@ -126,6 +132,11 @@ void UpdateBombs(float Diff) {
 						}
 						BombFireWorld[Ni][Nii] = BombID;
 						if (OldBlock == BLOCK_CRATE) {
+							BombFireWorld[Ni][Nii] = 0;
+							World[Ni][Nii] = BoxOpps[BoxOppsCounter++] + 100;
+							if (World[Ni][Nii] == 100) {
+								World[Ni][Nii] = BLOCK_AIR;
+							}
 							break;
 						}
 					}
@@ -142,6 +153,11 @@ void UpdateBombs(float Diff) {
 						}
 						BombFireWorld[Ni][Nii] = BombID;
 						if (OldBlock == BLOCK_CRATE) {
+							BombFireWorld[Ni][Nii] = 0;
+							World[Ni][Nii] = BoxOpps[BoxOppsCounter++] + 100;
+							if (World[Ni][Nii] == 100) {
+								World[Ni][Nii] = BLOCK_AIR;
+							}
 							break;
 						}
 					}
@@ -158,6 +174,11 @@ void UpdateBombs(float Diff) {
 						}
 						BombFireWorld[Ni][Nii] = BombID;
 						if (OldBlock == BLOCK_CRATE) {
+							BombFireWorld[Ni][Nii] = 0;
+							World[Ni][Nii] = BoxOpps[BoxOppsCounter++] + 100;
+							if (World[Ni][Nii] == 100) {
+								World[Ni][Nii] = BLOCK_AIR;
+							}
 							break;
 						}
 					}
@@ -174,6 +195,11 @@ void UpdateBombs(float Diff) {
 						}
 						BombFireWorld[Ni][Nii] = BombID;
 						if (OldBlock == BLOCK_CRATE) {
+							BombFireWorld[Ni][Nii] = 0;
+							World[Ni][Nii] = BoxOpps[BoxOppsCounter++] + 100;
+							if (World[Ni][Nii] == 100) {
+								World[Ni][Nii] = BLOCK_AIR;
+							}
 							break;
 						}
 					}

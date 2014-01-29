@@ -231,6 +231,10 @@ private:
 				if (MyPID == "") {
 					MyPID = read_msg_.body()[0];
 					MyPID += read_msg_.body()[1];
+					string *Opps = Splitter(Data, ";");
+					for (int i = 0; i < 250; i++) {
+						BoxOpps[i] = atof(Opps[i + 1].c_str());
+					}
 				}
 
 				string *Data2 = Splitter(Data, ";;;");
@@ -392,6 +396,11 @@ int main(int argc, char* argv[])
 		CrateTex = texture::loadBMP("crate.bmp");
 		BombTex = texture::loadBMP("bomb.bmp");
 		FireTex = texture::loadBMP("fire.bmp");
+		BonusBombTex = texture::loadBMP("MaksBomb.bmp");
+		BonusLifeTex = texture::loadBMP("Life.bmp");
+		BonusSpeedTex = texture::loadBMP("Speed.bmp");
+		BonusPowerTex = texture::loadBMP("Power.bmp");
+
 		//Register callbacks
 		glutDisplayFunc(display);
 		glutReshapeFunc(reshape);

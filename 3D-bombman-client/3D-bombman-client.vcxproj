@@ -98,6 +98,10 @@
   <ItemGroup>
     <Image Include="crate.bmp" />
     <Image Include="fire.bmp" />
+    <Image Include="Life.bmp" />
+    <Image Include="MaksBomb.bmp" />
+    <Image Include="Power.bmp" />
+    <Image Include="Speed.bmp" />
     <Image Include="stone.bmp" />
     <Image Include="tiles.bmp" />
   </ItemGroup>

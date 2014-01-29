@@ -67,5 +67,17 @@
     <Image Include="fire.bmp">
       <Filter>images</Filter>
     </Image>
+    <Image Include="Power.bmp">
+      <Filter>images</Filter>
+    </Image>
+    <Image Include="Speed.bmp">
+      <Filter>images</Filter>
+    </Image>
+    <Image Include="Life.bmp">
+      <Filter>images</Filter>
+    </Image>
+    <Image Include="MaksBomb.bmp">
+      <Filter>images</Filter>
+    </Image>
   </ItemGroup>
 </Project>

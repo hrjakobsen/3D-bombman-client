@@ -173,6 +173,18 @@ void GenerateWorld(){
 			}
 			glTranslatef(0, 0.25, 0);
 			////////////////////////////////////////////BOMB FIRE ////////////////////////////////////////////////////////////
+			if (World[z][x] == BLOCK_BONUS_LIFE) {
+				DrawCubeWithText(0.5, BonusLifeTex->textureID);
+			}
+			if (World[z][x] == BLOCK_BONUS_SPEED) {
+				DrawCubeWithText(0.5, BonusSpeedTex->textureID);
+			}
+			if (World[z][x] == BLOCK_BONUS_POWER) {
+				DrawCubeWithText(0.5, BonusPowerTex->textureID);
+			}
+			if (World[z][x] == BLOCK_BONUS_MOREBOMBS) {
+				DrawCubeWithText(0.5, BonusBombTex->textureID);
+			}
 			glTranslatef(1, 0, 0);
 		}
 		glTranslatef(WorldSize*-1, 0, 0);
