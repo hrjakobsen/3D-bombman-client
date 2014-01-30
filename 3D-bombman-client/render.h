@@ -234,8 +234,9 @@ void Draw2DCircle(float Radius) {
 }
 
 void DrawMiniMap() {
-	glTranslatef(0.00685, -0.00295, -0.01);
+	glTranslatef(0.00635, -0.00245, -0.01);
 	glRotatef(CameraAngle.x, 0, 0, 1);
+	glTranslatef(0.00105, -0.00105, 0);
 	for (int x = 0; x < WorldSize; x++) {
 		for (int z = 0; z < WorldSize; z++) {
 			if (!SolidBlock(World[z][x])) {
@@ -245,7 +246,7 @@ void DrawMiniMap() {
 			} else if (World[z][x] == BLOCK_CRATE) {
 				glColor3f(0.6, 0.3, 0.0);
 			}
-			glTranslatef(-0.00014 * z + BodyPosition.x * 0.00014, 0.00014 * x - BodyPosition.z * 0.00014, 0);
+			glTranslatef(-0.00014 * z, 0.00014 * x, 0);
 			glBegin(GL_TRIANGLE_FAN);
 			glVertex2f(0.00007, 0.00007);
 			glVertex2f(0.00007, -0.00007);
@@ -299,16 +300,17 @@ void DrawMiniMap() {
 				glVertex2f(-0.00007, 0.000035);
 				glEnd();
 			}
-			glTranslatef(0.00014 * z - BodyPosition.x * 0.00014, -0.00014 * x + BodyPosition.z * 0.00014, 0);
+			glTranslatef(0.00014 * z, -0.00014 * x, 0);
 		}
 	}
 	glColor3f(0, 1, 0);
-	glTranslatef(0.000075, -0.000075, 0);
+	glTranslatef(0.000075 - BodyPosition.x * 0.00014, -0.000075 + BodyPosition.z * 0.00014, 0);
 	Draw2DCircle(0.00005);
-	glTranslatef(-0.000075, 0.000075, 0);
+	glTranslatef(-0.000075 + BodyPosition.x * 0.00014, 0.000075 - BodyPosition.z * 0.00014, 0);
 	glColor3f(1, 1, 1);
+	glTranslatef(-0.00105, 0.00105, 0);
 	glRotatef(-CameraAngle.x, 0, 0, 1);
-	glTranslatef(-0.00685, 0.00295, 0.01);
+	glTranslatef(-0.00635, 0.00245, 0.01);
 }
 
 void DrawStatusBar() {
