@@ -133,12 +133,16 @@ void UpdateBombs(float Diff) {
 							BombWorld[Ni][Nii].age = BombExplodeAge;
 						}
 						BombFireWorld[Ni][Nii] = BombID;
-						if (OldBlock == BLOCK_CRATE) {
+						if (OldBlock == BLOCK_CRATE && BoxOpps[BoxOppsCounter] != 0) {
 							BombFireWorld[Ni][Nii] = 0;
 							World[Ni][Nii] = BoxOpps[BoxOppsCounter++] + 100;
 							if (World[Ni][Nii] == 100) {
 								World[Ni][Nii] = BLOCK_AIR;
 							}
+							break;
+						}
+						else if (OldBlock == BLOCK_CRATE) {
+							BoxOppsCounter++;
 							break;
 						}
 					}
@@ -154,12 +158,16 @@ void UpdateBombs(float Diff) {
 							BombWorld[Ni][Nii].age = BombExplodeAge;
 						}
 						BombFireWorld[Ni][Nii] = BombID;
-						if (OldBlock == BLOCK_CRATE) {
+						if (OldBlock == BLOCK_CRATE && BoxOpps[BoxOppsCounter] != 0) {
 							BombFireWorld[Ni][Nii] = 0;
 							World[Ni][Nii] = BoxOpps[BoxOppsCounter++] + 100;
 							if (World[Ni][Nii] == 100) {
 								World[Ni][Nii] = BLOCK_AIR;
 							}
+							break;
+						}
+						else if (OldBlock == BLOCK_CRATE) {
+							BoxOppsCounter++;
 							break;
 						}
 					}
@@ -175,12 +183,16 @@ void UpdateBombs(float Diff) {
 							BombWorld[Ni][Nii].age = BombExplodeAge;
 						}
 						BombFireWorld[Ni][Nii] = BombID;
-						if (OldBlock == BLOCK_CRATE) {
+						if (OldBlock == BLOCK_CRATE && BoxOpps[BoxOppsCounter] != 0) {
 							BombFireWorld[Ni][Nii] = 0;
 							World[Ni][Nii] = BoxOpps[BoxOppsCounter++] + 100;
 							if (World[Ni][Nii] == 100) {
 								World[Ni][Nii] = BLOCK_AIR;
 							}
+							break;
+						}
+						else if (OldBlock == BLOCK_CRATE) {
+							BoxOppsCounter++;
 							break;
 						}
 					}
@@ -196,12 +208,15 @@ void UpdateBombs(float Diff) {
 							BombWorld[Ni][Nii].age = BombExplodeAge;
 						}
 						BombFireWorld[Ni][Nii] = BombID;
-						if (OldBlock == BLOCK_CRATE) {
+						if (OldBlock == BLOCK_CRATE && BoxOpps[BoxOppsCounter] != 0) {
 							BombFireWorld[Ni][Nii] = 0;
 							World[Ni][Nii] = BoxOpps[BoxOppsCounter++] + 100;
 							if (World[Ni][Nii] == 100) {
 								World[Ni][Nii] = BLOCK_AIR;
 							}
+							break;
+						} else if (OldBlock == BLOCK_CRATE) {
+							BoxOppsCounter++;
 							break;
 						}
 					}

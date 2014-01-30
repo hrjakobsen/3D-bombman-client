@@ -98,6 +98,7 @@
   <ItemGroup>
     <Image Include="crate.bmp" />
     <Image Include="fire.bmp" />
+    <Image Include="Fire2.bmp" />
     <Image Include="Life.bmp" />
     <Image Include="MaksBomb.bmp" />
     <Image Include="Power.bmp" />

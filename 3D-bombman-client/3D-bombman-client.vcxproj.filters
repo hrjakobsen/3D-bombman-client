@@ -79,5 +79,8 @@
     <Image Include="MaksBomb.bmp">
       <Filter>images</Filter>
     </Image>
+    <Image Include="Fire2.bmp">
+      <Filter>images</Filter>
+    </Image>
   </ItemGroup>
 </Project>
