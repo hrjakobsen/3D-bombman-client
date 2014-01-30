@@ -414,11 +414,14 @@ int main(int argc, char* argv[])
 		WallTex = texture::loadBMP("stone.bmp");
 		CrateTex = texture::loadBMP("crate.bmp");
 		BombTex = texture::loadBMP("bomb.bmp");
-		FireTex = texture::loadBMP("fire.bmp");
+		FireTex = texture::loadBMP("Fire2.bmp");
 		BonusBombTex = texture::loadBMP("MaksBomb.bmp");
 		BonusLifeTex = texture::loadBMP("Life.bmp");
 		BonusSpeedTex = texture::loadBMP("Speed.bmp");
 		BonusPowerTex = texture::loadBMP("Power.bmp");
+		BodyTex = texture::loadBMP("Body.bmp");
+		HeadTex = texture::loadBMP("Head.bmp");
+		LegsTex = texture::loadBMP("Legs.bmp");
 
 		//Register callbacks
 		glutDisplayFunc(display);

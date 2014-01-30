@@ -129,9 +129,13 @@ void GenerateWorld(){
 
 	for (int i = 0; i < 3; i++) {
 		if (OtherLifes[i] > 0) {
-			glTranslatef(OtherPos[i].x - 0.5, 0, OtherPos[i].z - 0.5);
-			DrawCubeWithText(0.25, CrateTex->textureID);
-			glTranslatef(-OtherPos[i].x + 0.5, 0, -OtherPos[i].z + 0.5);
+			glTranslatef(OtherPos[i].x - 0.5, -0.375, OtherPos[i].z - 0.5);
+			DrawCubeWithText(0.25, LegsTex->textureID);
+			glTranslatef(0, 0.250, 0);
+			DrawCubeWithText(0.25, BodyTex->textureID);
+			glTranslatef(0, 0.250, 0);
+			DrawCubeWithText(0.25, HeadTex->textureID);
+			glTranslatef(-OtherPos[i].x + 0.5, -0.125, -OtherPos[i].z + 0.5);
 		}
 	}
 

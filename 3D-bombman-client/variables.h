@@ -25,6 +25,9 @@ texture *BonusLifeTex;
 texture *BonusBombTex;
 texture *BonusSpeedTex;
 texture *BonusPowerTex;
+texture *HeadTex;
+texture *BodyTex; 
+texture *LegsTex;
 GLUquadric *Bomb;
 
 //GAME SETUP

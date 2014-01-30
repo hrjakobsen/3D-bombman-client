@@ -82,5 +82,14 @@
     <Image Include="Fire2.bmp">
       <Filter>images</Filter>
     </Image>
+    <Image Include="Body.bmp">
+      <Filter>Header Files</Filter>
+    </Image>
+    <Image Include="Legs.bmp">
+      <Filter>Header Files</Filter>
+    </Image>
+    <Image Include="Head.bmp">
+      <Filter>Header Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
