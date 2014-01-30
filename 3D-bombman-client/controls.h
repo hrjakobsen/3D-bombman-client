@@ -119,20 +119,24 @@ void KeyBoardUpdate(float Diff) {
 			InFire = false;
 		}
 		if (World[(int)BodyPosition.x][(int)(BodyPosition.z)] == BLOCK_BONUS_LIFE) {
-			LifesBack++;
-			World[(int)BodyPosition.x][(int)(BodyPosition.z)] = BLOCK_AIR;
+			OpNext = true;
+			NextOpPosX = (int)BodyPosition.x;
+			NextOpPosY = (int)BodyPosition.z;
 		}
 		if (World[(int)BodyPosition.x][(int)(BodyPosition.z)] == BLOCK_BONUS_POWER) {
-			PlayerPower++;
-			World[(int)BodyPosition.x][(int)(BodyPosition.z)] = BLOCK_AIR;
+			OpNext = true;
+			NextOpPosX = (int)BodyPosition.x;
+			NextOpPosY = (int)BodyPosition.z;
 		}
 		if (World[(int)BodyPosition.x][(int)(BodyPosition.z)] == BLOCK_BONUS_SPEED) {
-			MovementSpeed += 0.5;
-			World[(int)BodyPosition.x][(int)(BodyPosition.z)] = BLOCK_AIR;
+			OpNext = true;
+			NextOpPosX = (int)BodyPosition.x;
+			NextOpPosY = (int)BodyPosition.z;
 		}
 		if (World[(int)BodyPosition.x][(int)(BodyPosition.z)] == BLOCK_BONUS_MOREBOMBS) {
-			MaksBombs ++;
-			World[(int)BodyPosition.x][(int)(BodyPosition.z)] = BLOCK_AIR;
+			OpNext = true;
+			NextOpPosX = (int)BodyPosition.x;
+			NextOpPosY = (int)BodyPosition.z;
 		}
 		if (KEYS[' ']) {
 			PlaceNextTime = true;

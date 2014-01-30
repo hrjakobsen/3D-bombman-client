@@ -270,6 +270,21 @@ private:
 									OtherLifes[Counter - 1] --;
 								}
 							}
+							if (Data3[i + 3] == "O") {
+								if (Me) {
+									if (World[atoi(Data3[i + 4].c_str())][atoi(Data3[i + 5].c_str())] == BLOCK_BONUS_LIFE) {
+										LifesBack++;
+									} else if (World[atoi(Data3[i + 4].c_str())][atoi(Data3[i + 5].c_str())] == BLOCK_BONUS_MOREBOMBS) {
+										MaksBombs++;
+									} else if (World[atoi(Data3[i + 4].c_str())][atoi(Data3[i + 5].c_str())] == BLOCK_BONUS_POWER) {
+										PlayerPower++;
+									} else if (World[atoi(Data3[i + 4].c_str())][atoi(Data3[i + 5].c_str())] == BLOCK_BONUS_SPEED) {
+										MovementSpeed += 0.5;
+									}
+								}
+								World[atoi(Data3[i + 4].c_str())][atoi(Data3[i + 5].c_str())] = BLOCK_AIR;
+								i += 2;
+							}
 						}
 						cout << OtherPos[Counter].x << " - " << OtherPos[Counter].z << "\n";
 					}
@@ -287,6 +302,10 @@ private:
 				if (LoseLifeNextTime) {
 					SendText += ";L";
 					LoseLifeNextTime = false;
+				}
+				if (OpNext) {
+					OpNext = false;
+					SendText += ";O;" + tostr(NextOpPosX) + ";" + tostr(NextOpPosY);
 				}
 				write(CTS(SendText));
 				//cout << "Sendt: " << MyPID + ";" + tostr(BodyPosition.x) + ";" + tostr(BodyPosition.z) << "\n";

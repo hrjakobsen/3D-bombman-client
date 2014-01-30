@@ -104,7 +104,9 @@ bool LoseLifeNextTime = false;
 bool IsAlive = true;
 int BoxOpps[250];
 int BoxOppsCounter = 0;
-
+bool OpNext;
+int NextOpPosX;
+int NextOpPosY;
 
 
 
