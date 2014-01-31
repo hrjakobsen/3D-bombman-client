@@ -34,7 +34,7 @@ GLUquadric *Bomb;
 float FramesPerSecond = 60;
 //VARS
 
-float DEC2RAD = 3.14 / 180;
+float DEC2RAD = 3.14159 / 180;
 
 short GameState = 1;
 /*
