@@ -231,6 +231,23 @@ private:
 				if (MyPID == "") {
 					MyPID = read_msg_.body()[0];
 					MyPID += read_msg_.body()[1];
+					if (MyPID == "P1") {
+						BodyPosition.x = 1.5;
+						BodyPosition.z = 1.5;
+						CameraAngle.x = -45;
+					} else if (MyPID == "P2") {
+						BodyPosition.x = 13.5;
+						BodyPosition.z = 13.5;
+						CameraAngle.x = -45 + 180;
+					} else if (MyPID == "P3") {
+						BodyPosition.x = 1.5;
+						BodyPosition.z = 13.5;
+						CameraAngle.x = -45 - 90;
+					} else if (MyPID == "P4") {
+						BodyPosition.x = 13.5;
+						BodyPosition.z = 1.5;
+						CameraAngle.x = -45 - 270;
+					}
 					string *Opps = Splitter(Data, ";");
 					for (int i = 0; i < 250; i++) {
 						BoxOpps[i] = atof(Opps[i + 1].c_str());
